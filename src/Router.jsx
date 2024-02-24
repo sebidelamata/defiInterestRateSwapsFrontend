@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./ErrorPage";
 import Earn from "./Earn";
+import Trade from "./Trade";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const Router = () => {
     {
         path: '/earn',
         element: <Earn />,
+    },
+    {
+      path: '/trade',
+      element: <Trade />
     }
   ]);
 

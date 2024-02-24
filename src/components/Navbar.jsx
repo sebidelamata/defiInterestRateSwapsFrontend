@@ -24,7 +24,7 @@ const Navbar = () => {
             </ul>
             <ul className="nav-bar-link-list-right">
                 <li className="nav-bar-link">
-                    <Link>Trade</Link>
+                    <Link to={'/trade'}>Trade</Link>
                 </li>
                 <li className="nav-bar-link">
                     Connect Wallet

@@ -80,7 +80,9 @@ const EarnGovTokenModal = () => {
                     </ul>
                 </li>
                 <li className="earn-gov-token-modal-subsection-list-item">
-                    <Link to={'www.google.com'}>Buy Governance Token (Name TBD)</Link>
+                    <Link to={'https://app.uniswap.org/swap'} target="_blank" noreferrer="true">Buy Governance Token (Name TBD)</Link>
+                    <button className="earn-gov-token-modal-stake-button">Stake</button>
+                    <button className="earn-gov-token-modal-unstake-button">Unstake</button>
                 </li>
             </ul>
         </div>
