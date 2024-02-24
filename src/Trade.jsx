@@ -1,6 +1,7 @@
 import SelectedMarketModal from "./components/SelectedMarketModal"
 import Graph from './components/Graph'
 import PositionsMenu from "./components/PositionsMenu"
+import TradeEntryModal from "./components/TradeEntryModal"
 
 const Trade = () => {
     return(
@@ -8,6 +9,7 @@ const Trade = () => {
             <SelectedMarketModal />
             <Graph />
             <PositionsMenu />
+            <TradeEntryModal />
         </>
     )
 }
