@@ -1,10 +1,12 @@
 import SelectedMarketModal from "./components/SelectedMarketModal"
-import Graph from './components/Graph'
 import PositionsMenu from "./components/PositionsMenu"
 import TradeEntryModal from "./components/TradeEntryModal"
 import Navbar from "./components/Navbar"
+import TradingGraph from "./components/TradingGraph"
+import { useState, useEffect } from "react"
 
 const Trade = () => {
+
     return(
         <>
 
@@ -14,7 +16,7 @@ const Trade = () => {
             </div>
             <Navbar className="nav-bar"/>
             <SelectedMarketModal />
-            <Graph />
+            <TradingGraph/>
             <PositionsMenu />
             <TradeEntryModal />
         </>

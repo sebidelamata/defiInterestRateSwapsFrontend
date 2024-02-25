@@ -4,6 +4,7 @@ import ErrorPage from "./ErrorPage";
 import Earn from "./Earn";
 import Trade from "./Trade";
 
+
 const Router = () => {
   const router = createBrowserRouter([
     {
