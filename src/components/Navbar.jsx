@@ -2,13 +2,13 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
     return(
-        < >
+        <div className="nav-bar">
             <div className="protocol-name-and-logo">
                 <div className="protocol-logo">
                     🦐
                 </div>
                 <div className="protocol-name">
-                    Protocol Name
+                    REPO Interest Rate Swaps Protocol
                 </div>
             </div>
             <ul className="nav-bar-link-list-center">
@@ -30,7 +30,7 @@ const Navbar = () => {
                     Connect Wallet
                 </li>
             </ul>
-        </>
+        </div>
     )
 }
 

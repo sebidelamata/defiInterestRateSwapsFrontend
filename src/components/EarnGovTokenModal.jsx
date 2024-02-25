@@ -6,7 +6,7 @@ const EarnGovTokenModal = () => {
             <ul className="earn-gov-token-modal-subsection-list">
                 <li className="earn-gov-token-modal-subsection-list-item">
                     <div className="earn-gov-token-modal-title">
-                        Governance Token (Name TBD)
+                        $REPO
                     </div>
                 </li>
                 <li className="earn-gov-token-modal-subsection-list-item">
@@ -26,7 +26,7 @@ const EarnGovTokenModal = () => {
                             </div>
                             <div className="price-wallet-staked-list-item-stat">
                                 <div className="price-wallet-staked-amount">0</div>
-                                <div className="price-wallet-staked-unit">Governance Token (Name TBD)</div>
+                                <div className="price-wallet-staked-unit">$REPO</div>
                             </div>
                         </li>
                         <li className="price-wallet-staked-list-item">
@@ -35,7 +35,7 @@ const EarnGovTokenModal = () => {
                             </div>
                             <div className="price-wallet-staked-list-item-stat">
                                 <div className="price-wallet-staked-amount">0</div>
-                                <div className="price-wallet-staked-unit">Governance Token (Name TBD)</div>
+                                <div className="price-wallet-staked-unit">$REPO</div>
                             </div>
                         </li>
                     </ul>
@@ -67,22 +67,22 @@ const EarnGovTokenModal = () => {
                             <div className="total-staked-title">Total Staked:</div>
                             <div className="total-staked-amount">
                                 <div className="total-staked-amount-amount">0</div>
-                                <div className="total-staked-amount-unit">Governance Token (Name TBD)</div>
+                                <div className="total-staked-amount-unit">$REPO</div>
                             </div>
                         </li>
                         <li className="total-staked-supply-list-item">
                             <div className="total-supply-title">Total Supply:</div>
                             <div className="total-supply-amount">
                                 <div className="total-supply-amount-amount">0</div>
-                                <div className="total-supply-amount-unit">Governance Token (Name TBD)</div>
+                                <div className="total-supply-amount-unit">$REPO</div>
                             </div>
                         </li>
                     </ul>
                 </li>
-                <li className="earn-gov-token-modal-subsection-list-item">
-                    <Link to={'https://app.uniswap.org/swap'} target="_blank" noreferrer="true">Buy Governance Token (Name TBD)</Link>
-                    <button className="earn-gov-token-modal-stake-button">Stake</button>
-                    <button className="earn-gov-token-modal-unstake-button">Unstake</button>
+                <li className="earn-gov-token-modal-subsection-list-item earn-gov-modal-bottom">
+                    <Link to={'https://app.uniswap.org/swap'} target="_blank" noreferrer="true" className="buy-repo">Buy $REPO</Link>
+                    <button className="earn-gov-token-modal-stake-button stake-repo" >Stake</button>
+                    <button className="earn-gov-token-modal-unstake-button unstake-repo">Unstake</button>
                 </li>
             </ul>
         </div>

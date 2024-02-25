@@ -1,44 +1,62 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0rem;
   text-align: center;
+  --color-1: rgb(6, 5, 50);
+  --color-2: rgb(196, 232, 203);
+  --color-3: rgb(181, 168, 68);
+  background-color: var(--color-1);
+  color: var(--color-2);
+  width: 100vw;
+  display: grid;
+  font-size: x-large;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body{
+  margin: 0;
+  padding: 0;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul{
+  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+a{
+  text-decoration: none;
+  color: var(--color-2);
 }
+
+a:active{
+  text-decoration: none;
+  color: var(--color-2);
+}
+
+button{
+  background-color: var(--color-1);
+  color: var(--color-2);
+  padding: min(0.5em);
+  border-radius: min(1em);
+  border-color: var(--color-2);
+  border-width: 2px;
+  border-style: solid;
+  transition: color 0.6s, border-color 0.6s; 
+}
+
+button:hover{
+  color: var(--color-3);
+  border-color: var(--color-3);
+}
+
 
 .card {
   padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
 
 .horizontal-slider {
@@ -77,4 +95,191 @@
   outline: none;
   height: 10px;
   line-height: 38px;
+}
+
+.homepage,
+.earn-page{
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  gap: min(2em);
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.protocol-name-and-logo{
+  grid-area: protocol-name-and-logo;
+  font-size: xx-large;
+}
+
+.nav-bar-link-list-center{
+  grid-area: nav-bar-link-list-center;
+  align-items: center;
+  width: 50vw;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.nav-bar-link-list-right{
+  grid-area: nav-bar-link-list-right;
+  align-items: center;
+  width: 50vw;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.nav-bar{
+  display: grid;
+  grid-template-areas: "protocol-name-and-logo protocol-name-and-logo"
+    "nav-bar-link-list-center nav-bar-link-list-right";
+  grid-template-rows: auto auto;
+  gap: min(10px);
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+}
+
+.stats-title{
+  font-size: xx-large;
+}
+
+.earn-lp-token-modal{
+  margin-bottom: min(5svh);
+}
+
+.overview-modal,
+.total-stats-modal,
+.earn-gov-token-modal,
+.earn-lp-token-modal,
+.total-rewards-modal{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: repeat(2, auto);
+  border-radius: 2em;
+  border-width: 2px;
+  border-style: solid;
+  width: 90vw;
+  gap: min(0.5em);
+}
+
+.overview-modal-title{
+  font-size: x-large;
+}
+
+.total-stats-modal{
+  margin-bottom: 5svh;
+}
+
+.earn-gov-token-modal,
+.total-rewards-modal,
+.earn-lp-token-modal{
+  padding-left: 5vw;
+}
+
+.earn-gov-token-modal-subsection-list{
+  display: grid;
+  gap: min(2em);
+  width: 90vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.earn-gov-token-modal-subsection-list>li{
+  display: grid;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-2);
+  padding-bottom: min(0.5em);
+}
+
+.price-wallet-staked-list-item,
+.apr-rewards-list-item,
+.total-staked-supply-list-item{
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  gap: min(0.3em);
+}
+
+.price-wallet-staked-list-item-stat{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: min(0.3em);
+}
+
+.apr-rewards-list,
+.total-staked-supply-list{
+  display: grid;
+  grid-template-rows: repeat(2,auto);
+  gap: min(0.3em);
+}
+
+.apr-rewards-list-item-amount,
+.total-staked-amount,
+.total-supply-amount{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: min(0.3em);
+}
+
+.earn-gov-modal-bottom{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: min(1em);
+}
+
+.total-rewards-modal-list{
+  display: grid;
+  gap: min(0.5em);
+
+}
+
+.total-rewards-modal-list>li,
+.earn-lp-token-modal-list>li{
+  display: grid;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-2);
+  padding-bottom: min(0.5em);
+
+}
+
+.total-rewards-modal-stats{
+  display: grid;
+  gap: min(0.5em);
+  grid-template-columns: repeat(2, auto);
+}
+
+.total-rewards-modal-buttons{
+  display: grid;
+  gap: min(0.5em);
+  grid-template-columns: repeat(2, auto);
+}
+
+.earn-lp-token-modal-list{
+  display: grid;
+  gap: min(0.5em);
+}
+
+.earn-lp-price-wallet-staked{
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: min(0.5em);
+}
+
+.earn-lp-price,
+.earn-lp-wallet,
+.earn-lp-staked,
+.earn-lp-apr,
+.earn-lp-rewards,
+.earn-lp-total-staked,
+.earn-lp-total-supply,
+.earn-lp-modal-buttons,
+.overview-stats-item,
+.overview-stats-item-stat,
+.total-stats-modal-stats-item,
+.total-stats-modal-item-stat{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: min(0.5em);
 }
