@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import WalletConnectButton from './WalletConnectButton'
+
 
 const Navbar = () => {
     return(
@@ -27,7 +29,7 @@ const Navbar = () => {
                     <Link to={'/trade'}>Trade</Link>
                 </li>
                 <li className="nav-bar-link">
-                    Connect Wallet
+                    <WalletConnectButton/>
                 </li>
             </ul>
         </div>
