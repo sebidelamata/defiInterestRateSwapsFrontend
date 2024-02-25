@@ -37,7 +37,7 @@ const TradeEntryModal = () => {
                 </div>
                 <div className="trade-entry-payment-size-bottom-row">
                     <div className="trade-entry-payment-size-bottom-row-left">
-                        {`${leverage * payValue} aUSDC`}
+                        {`${leverage * payValue} ${tradeDirection === "Long" ? 'YT aUSDC' : 'PT aUSDC'}`}
                     </div>
                     <div className="trade-entry-payment-size-bottom-row-right"></div>
                 </div>
