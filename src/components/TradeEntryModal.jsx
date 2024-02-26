@@ -3,6 +3,11 @@ import ReactSlider from 'react-slider'
 
 import { useReadContract } from 'wagmi'
 
+import { getAccount } from '@wagmi/core'
+
+
+
+
 
 const TradeEntryModal = () => {
     const [tradeDirection, setTradeDirection] = useState('Long')
@@ -12,14 +17,7 @@ const TradeEntryModal = () => {
     const handlePayValueChange = (e) => {
         setPayValue(e.target.value);
     };
-
-    // const { data: balance } = useReadContract({
-    //      //
-    //       functionName: 'balanceOf',
-    //       args: ['0x03A71968491d55603FFe1b11A9e23eF013f75bCF'],
-    //     })
-
-    //     console.log(balance)
+    
 
 
     return(

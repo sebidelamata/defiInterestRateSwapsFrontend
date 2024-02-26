@@ -1,4 +1,8 @@
+
+
 const EarnLPTokenModal = () => {
+
+    
     return(
         <div className="earn-lp-token-modal">
             <ul className="earn-lp-token-modal-list">
