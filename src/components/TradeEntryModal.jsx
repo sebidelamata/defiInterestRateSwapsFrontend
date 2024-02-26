@@ -18,7 +18,7 @@ const TradeEntryModal = () => {
         setPayValue(e.target.value);
     };
 
-    const userBalanceUSDCFetch = useReadContract({
+    let userBalanceUSDCFetch = useReadContract({
         abi: testnetUSDCContractConfig.abi,
         address: testnetUSDCContractConfig.address,
         functionName: 'balanceOf',
@@ -26,6 +26,8 @@ const TradeEntryModal = () => {
         watch: true,
         chainId:14997,
       })
+    // remove usdc decimals
+    userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
     console.log(userBalanceUSDCFetch)
     
 
@@ -39,7 +41,7 @@ const TradeEntryModal = () => {
             <div className="trade-entry-payment-entry">
                 <div className="trade-entry-payment-entry-top-row">
                     <div className="trade-entry-payment-entry-title">Pay:</div>
-                    <div className="trade-entry-payment-entry-balance">{`Balance: ${userBalanceUSDCFetch.data} USDC`}</div>
+                    <div className="trade-entry-payment-entry-balance">{`Balance: ${userBalanceUSDCFetch} USDC`}</div>
                 </div>
                 <div className="trade-entry-payment-entry-bottom-row">
                     <input className="trade-entry-payment-entry-bottom-row-left" type="number" value={payValue} onChange={handlePayValueChange}></input>
