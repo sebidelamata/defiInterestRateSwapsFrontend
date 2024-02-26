@@ -28,9 +28,11 @@ const TradeEntryModal = () => {
       })
     // remove usdc decimals
     userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
-    console.log(userBalanceUSDCFetch)
     
-
+    const handleMaxButtonClick = (e) => {
+        e.preventDefault()
+        setPayValue(userBalanceUSDCFetch)
+    }
 
     return(
         <form action="" method="POST" className="trade-entry-modal">
@@ -46,7 +48,7 @@ const TradeEntryModal = () => {
                 <div className="trade-entry-payment-entry-bottom-row">
                     <input className="trade-entry-payment-entry-bottom-row-left" type="number" value={payValue} onChange={handlePayValueChange}></input>
                     <div className="trade-entry-payment-entry-bottom-row-right">
-                        <button className="trade-entry-payment-max-button">Max</button>
+                        <button className="trade-entry-payment-max-button" onClick={(e) => handleMaxButtonClick(e)}>Max</button>
                     </div>
                 </div>
             </div>
