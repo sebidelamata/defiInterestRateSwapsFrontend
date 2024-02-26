@@ -11,14 +11,18 @@
   width: 100vw;
   display: grid;
   font-size: x-large;
+  font-family: 'Roboto', sans-serif;
 }
 
-body{
+body,
+html{
   margin: 0;
   padding: 0;
   display: grid;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-1);
+  overscroll-behavior: none;
 }
 
 ul{

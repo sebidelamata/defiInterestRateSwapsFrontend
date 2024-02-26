@@ -27,9 +27,6 @@ const SelectedMarketModal = ({priceData, priceDataLoading, priceDataError}) => {
 
     const twentyFourHrMin = Math.min(...twentyFourHrData.impliedApy)
     const twentyFourHrMax = Math.max(...twentyFourHrData.impliedApy)
-    console.log(twentyFourHrMin)
-
-    console.log(twentyFourHrData)
 
     return(
         

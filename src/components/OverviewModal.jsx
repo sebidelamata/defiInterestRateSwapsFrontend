@@ -4,7 +4,7 @@ const OverviewModal = () => {
             <div className="overview-modal-title">Overview</div>
             <ul className="overview-stats">
                 <li className="overview-stats-item">
-                    <div className="overview-stats-item-title">USDC Pool</div>
+                    <div className="overview-stats-item-title">$RLP Pool</div>
                     <div className="overview-stats-item-stat">
                     <div>0</div>
                         <div className="total-stats-modal-item-stat-unit">USDC</div>

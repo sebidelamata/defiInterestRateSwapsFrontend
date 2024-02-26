@@ -1,11 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ReactSlider from 'react-slider'
-
-import { useReadContract } from 'wagmi'
 
 import { getAccount } from '@wagmi/core'
 
-
+import { useReadContract } from 'wagmi'
+import {testnetUSDCContractConfig} from '../../abis'
 
 
 
@@ -14,9 +13,20 @@ const TradeEntryModal = () => {
     const [leverage, setLeverage] = useState(1.00);
     const [payValue, setPayValue] = useState(1)
 
+
     const handlePayValueChange = (e) => {
         setPayValue(e.target.value);
     };
+
+    const userBalanceUSDCFetch = useReadContract({
+        abi: testnetUSDCContractConfig.abi,
+        address: testnetUSDCContractConfig.address,
+        functionName: 'balanceOf',
+        args: ['0x8E11D12876633885629ffA329Eb7bdAb4AD0Cd3B'],
+        watch: true,
+        chainId:14997,
+      })
+    console.log(userBalanceUSDCFetch)
     
 
 
@@ -29,7 +39,7 @@ const TradeEntryModal = () => {
             <div className="trade-entry-payment-entry">
                 <div className="trade-entry-payment-entry-top-row">
                     <div className="trade-entry-payment-entry-title">Pay:</div>
-                    <div className="trade-entry-payment-entry-balance">Balance:</div>
+                    <div className="trade-entry-payment-entry-balance">{`Balance: ${userBalanceUSDCFetch.data} USDC`}</div>
                 </div>
                 <div className="trade-entry-payment-entry-bottom-row">
                     <input className="trade-entry-payment-entry-bottom-row-left" type="number" value={payValue} onChange={handlePayValueChange}></input>

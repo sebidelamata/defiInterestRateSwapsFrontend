@@ -29,7 +29,7 @@ const Navbar = () => {
                     <Link to={'/trade'}>Trade</Link>
                 </li>
                 <li className="nav-bar-link">
-                    <WalletConnectButton/>
+                    <WalletConnectButton className='button'/>
                 </li>
             </ul>
         </div>

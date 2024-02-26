@@ -24,7 +24,6 @@ const Trade = () => {
           const parsedData = Papa.parse(data.results, { header: true }).data;
           setPriceData(parsedData)
           setPriceDataLoading(false)
-          console.log(data)
           return;
         } catch (error) {
             setPriceDataError(error)
