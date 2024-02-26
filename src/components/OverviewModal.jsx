@@ -1,4 +1,19 @@
+import { useReadContract } from 'wagmi'
+import {testnetUSDCContractConfig} from '../../abis'
+
 const OverviewModal = () => {
+
+    let userBalanceUSDCFetch = useReadContract({
+        abi: testnetUSDCContractConfig.abi,
+        address: testnetUSDCContractConfig.address,
+        functionName: 'balanceOf',
+        args: ['0x900F4e8e26bBC37A0E8e069C5587946F7Bc91eEB'],
+        watch: true,
+        chainId:14997,
+      })
+    // remove usdc decimals
+    userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
+
     return(
         <div className="overview-modal">
             <div className="overview-modal-title">Overview</div>
@@ -6,7 +21,7 @@ const OverviewModal = () => {
                 <li className="overview-stats-item">
                     <div className="overview-stats-item-title">$RLP Pool</div>
                     <div className="overview-stats-item-stat">
-                    <div>0</div>
+                    <div>{`${userBalanceUSDCFetch}`}</div>
                         <div className="total-stats-modal-item-stat-unit">USDC</div>
                     </div>
                 </li>

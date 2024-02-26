@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
 import ReactSlider from 'react-slider'
-
-import { getAccount } from '@wagmi/core'
-
-import { useReadContract } from 'wagmi'
+import { useAccount, useReadContract } from 'wagmi'
 import {testnetUSDCContractConfig} from '../../abis'
-
+import { getAccount } from '@wagmi/core'
+import { config } from '../main'
 
 
 const TradeEntryModal = () => {
     const [tradeDirection, setTradeDirection] = useState('Long')
     const [leverage, setLeverage] = useState(1.00);
-    const [payValue, setPayValue] = useState(1)
+    const [payValue, setPayValue] = useState(1.00)
 
+    let account = getAccount(config)
+    console.log(account)
 
     const handlePayValueChange = (e) => {
         setPayValue(e.target.value);
@@ -22,7 +22,7 @@ const TradeEntryModal = () => {
         abi: testnetUSDCContractConfig.abi,
         address: testnetUSDCContractConfig.address,
         functionName: 'balanceOf',
-        args: ['0x8E11D12876633885629ffA329Eb7bdAb4AD0Cd3B'],
+        args: [account.address],
         watch: true,
         chainId:14997,
       })
