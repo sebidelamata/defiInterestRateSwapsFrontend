@@ -6,24 +6,77 @@
   --color-1: rgb(6, 5, 50);
   --color-2: rgb(196, 232, 203);
   --color-3: rgb(181, 168, 68);
+  --color-4: rgb(46, 44, 159);
+  --color-5: rgb(73, 45, 2);
+  --color-6: rgb(90, 160, 218);
   --zoom-animation-duration: 0.5s;
   background-color: var(--color-1);
   color: var(--color-2);
-  width: 100vw;
   display: grid;
   font-size: x-large;
   font-family: 'Roboto', sans-serif;
+  width: 100vw;
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 330deg;
+  }
+  25% {
+    --gradient-angle: 15deg;
+  }
+  50% {
+    --gradient-angle: 60deg;
+  }
+  75% {
+    --gradient-angle: 104deg;
+  }
+  100% {
+    --gradient-angle: 329deg;
+  }
 }
 
 body,
 html{
   margin: 0;
   padding: 0;
+  position: relative;
   display: grid;
   align-items: center;
   justify-content: center;
   background-color: var(--color-1);
   overscroll-behavior: none;
+}
+
+.homepage::before,
+.homepage::after,
+.earn-page::before,
+.earn-page::after,
+.trade-page::before,
+.trade-page::after{
+  display: grid;
+  width: 100vw;
+  position: absolute;
+  background: linear-gradient(
+    var(--gradient-angle),
+    var(--color-1),
+    var(--color-4),
+    var(--color-5),
+    var(--color-6)
+  );
+  animation: rotation 60s linear infinite;
+  content: "";
+  inset: 0;
+}
+.homepage::after,
+.earn-page::after{
+  filter: blur(10rem);
 }
 
 ul{
@@ -58,10 +111,11 @@ input{
   transition: color 0.6s, border-color 0.6s, text-shadow 0.6s, box-shadow 0.6s; 
   font-size: x-large;
   text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
-        0 0 0.25em var(--color-2);
-
-    box-shadow: inset 0 0 0.5em 0 var(--color-2),
-        0 0 0.5em 0 var(--color-2);
+    0 0 0.25em var(--color-2);
+  box-shadow: inset 0 0 0.5em 0 var(--color-2),
+    0 0 0.5em 0 var(--color-2);
+  background-color: var(--color-1);
+  z-index: 2;
 }
 
 button:hover,
@@ -139,12 +193,17 @@ input:hover{
   align-items: center;
   width: 100vw;
   animation: zoom var(--zoom-animation-duration) ease-in-out;
+  position: relative;
+  background-color: var(--color-1);
+  z-index: 2;
 }
 
 .protocol-name-and-logo{
   font-size: xx-large;
   display: grid;
   grid-template-rows: auto auto;
+  background-color: var(--color-1);
+  z-index: 2;
 }
 
 .nav-bar-link-list-center{
@@ -171,6 +230,8 @@ input:hover{
   text-shadow: 0 0 0.125em hsl(0 0% 100% / .3),
         0 0 0.25em var(--color-2);
   animation: zoom var(--zoom-animation-duration) ease-in-out;
+  background-color: var(--color-1);
+  z-index: 2;
 }
 
 .nav-bar-bottom-row{
@@ -206,6 +267,8 @@ input:hover{
   gap: min(0.5em);
   margin-left: 5vw;
   animation: zoom var(--zoom-animation-duration) ease-in-out;
+  background-color: var(--color-1);
+  z-index: 2;
 }
 
 .overview-modal-title{
@@ -477,3 +540,8 @@ input:hover{
     opacity: 1;
   }
 }
+
+.transaction-hash{
+  font-size: large;
+}
+

@@ -28,7 +28,7 @@ const TradeEntryModal = () => {
       })
     // remove usdc decimals
     userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
-
+    console.log(userBalanceUSDCFetch)
     let userBalanceRepoFetch = useReadContract({
         abi: testnetREPOContractConfig.abi,
         address: testnetREPOContractConfig.address,

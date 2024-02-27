@@ -1,4 +1,4 @@
-
+import BuyRLP from "./BuyRLP"
 
 const EarnLPTokenModal = () => {
 
@@ -44,7 +44,7 @@ const EarnLPTokenModal = () => {
                     </div>
                 </li>
                 <li className="earn-lp-modal-buttons">
-                    <button className="earn-lp-modal-buttons-buy-lp">Buy $RLP</button>
+                    <BuyRLP/>
                     <button className="earn-lp-modal-buttons-sell-lp">Sell $RLP</button>
                 </li>
             </ul>

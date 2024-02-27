@@ -3,12 +3,12 @@ import RepoVaultABI from './RepoVault.json'
 
 
 const testnetUSDCContractConfig = {
-    address: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
+    address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
     abi: erc20Abi.abi
 }
 
 const testnetREPOContractConfig = {
-    address: '0x900F4e8e26bBC37A0E8e069C5587946F7Bc91eEB',
+    address: '0x2e3aFd34fa0C2EefD22902603B58AdC43f08A68D',
     abi: RepoVaultABI.abi
 }
 

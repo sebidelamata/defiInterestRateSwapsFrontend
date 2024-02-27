@@ -18,7 +18,7 @@ const Router = () => {
     },
     {
       path: '/trade',
-      element: <Trade />
+      element: <Trade classname='trade-page'/>
     }
   ]);
 
