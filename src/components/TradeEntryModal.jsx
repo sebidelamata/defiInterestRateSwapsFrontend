@@ -32,13 +32,11 @@ const TradeEntryModal = () => {
     let userBalanceRepoFetch = useReadContract({
         abi: testnetREPOContractConfig.abi,
         address: testnetREPOContractConfig.address,
-        functionName: "getRate",
+        functionName: "balanceOf",
         args: [address],
         watch: true,
         chainId:14997,
       })
-    // remove usdc decimals
-    userBalanceRepoFetch = (parseInt(userBalanceRepoFetch.data) * 10**-6).toFixed(2)
     console.log(userBalanceRepoFetch)
     
     const handleMaxButtonClick = (e) => {
