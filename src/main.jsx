@@ -47,7 +47,7 @@ createWeb3Modal({
   ethersConfig: defaultConfig({ metadata, rpcUrl: "https://rpc.buildbear.io/persistent-siryn-0132e20a" }),
   wagmiConfig: config,
   chains: [repoTestnet],
-  defaultChain: repoTestnet,
+  defaultChain: testnet,
   projectId: projectId,
 })
 

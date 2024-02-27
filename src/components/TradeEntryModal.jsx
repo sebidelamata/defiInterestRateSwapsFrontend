@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ReactSlider from 'react-slider'
 import { useAccount, useReadContract } from 'wagmi'
-import {testnetUSDCContractConfig} from '../../abis'
+import {testnetUSDCContractConfig, testnetREPOContractConfig} from '../../abis'
 import { getAccount } from '@wagmi/core'
 import { config } from '../main'
 
@@ -11,8 +11,8 @@ const TradeEntryModal = () => {
     const [leverage, setLeverage] = useState(1.00);
     const [payValue, setPayValue] = useState(1.00)
 
-    let account = getAccount(config)
-    console.log(account)
+    let { address, isConnecting, isDisconnected } = useAccount(config)
+    console.log(testnetREPOContractConfig)
 
     const handlePayValueChange = (e) => {
         setPayValue(e.target.value);
@@ -22,12 +22,24 @@ const TradeEntryModal = () => {
         abi: testnetUSDCContractConfig.abi,
         address: testnetUSDCContractConfig.address,
         functionName: 'balanceOf',
-        args: [account.address],
+        args: [address],
         watch: true,
         chainId:14997,
       })
     // remove usdc decimals
     userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
+
+    let userBalanceRepoFetch = useReadContract({
+        abi: testnetREPOContractConfig.abi,
+        address: testnetREPOContractConfig.address,
+        functionName: "getRate",
+        args: [address],
+        watch: true,
+        chainId:14997,
+      })
+    // remove usdc decimals
+    userBalanceRepoFetch = (parseInt(userBalanceRepoFetch.data) * 10**-6).toFixed(2)
+    console.log(userBalanceRepoFetch)
     
     const handleMaxButtonClick = (e) => {
         e.preventDefault()

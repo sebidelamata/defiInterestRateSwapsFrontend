@@ -13,25 +13,27 @@ const Navbar = () => {
                     REPO Interest Rate Swaps Protocol
                 </div>
             </div>
-            <ul className="nav-bar-link-list-center">
-                <li className="nav-bar-link">
-                    <Link to={"/"}>Dashboard</Link>
-                </li>
-                <li className="nav-bar-link">
-                    <Link to={"/earn"}>Earn</Link>
-                </li>
-                <li className="nav-bar-link">
-                    <Link>Docs</Link>
-                </li>
-            </ul>
-            <ul className="nav-bar-link-list-right">
-                <li className="nav-bar-link">
-                    <Link to={'/trade'}>Trade</Link>
-                </li>
-                <li className="nav-bar-link">
-                    <WalletConnectButton className='button'/>
-                </li>
-            </ul>
+            <div className="navbar-bottom-row">
+                <ul className="nav-bar-link-list-center">
+                    <li className="nav-bar-link">
+                        <Link to={"/"}>Dashboard</Link>
+                    </li>
+                    <li className="nav-bar-link">
+                        <Link to={"/earn"}>Earn</Link>
+                    </li>
+                    <li className="nav-bar-link">
+                        <Link>Docs</Link>
+                    </li>
+                </ul>
+                <ul className="nav-bar-link-list-right">
+                    <li className="nav-bar-link">
+                        <Link to={'/trade'}>Trade</Link>
+                    </li>
+                    <li className="nav-bar-link">
+                        <WalletConnectButton className='button'/>
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }
