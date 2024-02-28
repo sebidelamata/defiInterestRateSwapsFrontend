@@ -42,7 +42,7 @@ const OverviewModal = () => {
     let oracleFetch = useReadContract({
         abi: testnetREPOContractConfig.abi,
         address: testnetREPOContractConfig.address,
-        functionName: '"oracle"',
+        functionName: "oracle",
         args: [],
         watch: true,
         chainId:14997,

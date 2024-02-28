@@ -12,43 +12,53 @@ const TradingGraph = ({priceData, priceDataLoading, priceDataError}) => {
         return <div className='loading'>There was a network error</div>
     }
   // Create the Plotly trace
-  const timestamps = priceData.map(entry => new Date(entry.timestamp * 1000));
-  const underlyingApy = priceData.map(entry => 1 - entry.underlyingApy);
-  const impliedApy = priceData.map(entry => 1 - entry.impliedApy);
+  const time = priceData.map(entry => new Date(entry.time));
+  const open = priceData.map(entry => entry.open);
+  const high = priceData.map(entry => entry.high);
+  const low = priceData.map(entry => entry.low);
+  const close = priceData.map(entry => entry.close);
+  const volume = priceData.map(entry => entry.volume);
 
-  const trace1 = {
-      x: timestamps,
-      y: underlyingApy,
-      type: 'scatter',
-      mode: 'lines+markers',
-      name: 'Underlying Zero Coupon Price',
-      marker: { color: 'rgb(196, 232, 203)' }
+  const trace = {
+    x: time,
+    close: close,
+    decreasing: {line: {color: 'rgb(181, 168, 68)'}},
+    high: high,
+    increasing: {line: {color: 'rgb(196, 232, 203)'}},
+    line: {color: 'rgb(196, 232, 203)'},
+    low: low,
+    open: open,
+    type: 'candlestick',
+    xaxis: 'x',
+    yaxis: 'y',
+
   };
 
-  const trace2 = {
-      x: timestamps,
-      y: impliedApy,
-      type: 'scatter',
-      mode: 'lines+markers',
-      name: 'Implied Zero Coupon Price',
-      marker: { color: 'rgb(181, 168, 68)' }
-  };
+  let data = [trace]
 
-  const layout = {
-      title: 'Zero Coupon Prices (USDC)',
-      xaxis: { title: 'Time' },
-      yaxis: { 
-        title: 'Zero Coupon Price',
-        tickformat: '$,.2f'
+  let layout = {
+    title: 'Zero Coupon Prices',
+    xaxis: {
+      autorange: true,
+      rangeslider: {visible: false},
+      type: 'date'
     },
-      plot_bgcolor: 'rgb(6, 5, 50)',
-    paper_bgcolor: 'rgb(6, 5, 50)',
-    font: {color: 'rgb(196, 232, 203)'}
+    yaxis: {
+      autorange: true,
+      type: 'linear',
+      tickformat: '$,.2f'
+    },
+    font: {
+        family: 'Roboto',
+        color: 'rgb(196, 232, 203)' // Font color
+      },
+      plot_bgcolor: 'rgb(6, 5, 50)', // Background color
+      paper_bgcolor: 'rgb(6, 5, 50)' // Paper color (plot area)
   };
 
   return (
       <Plot
-          data={[trace1, trace2]}
+          data={data}
           layout={layout}
           style={{ width: '100%', height: 'auto' }}
       />

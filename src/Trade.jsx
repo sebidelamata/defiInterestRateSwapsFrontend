@@ -14,15 +14,18 @@ const Trade = () => {
 
     async function fetchPriceData() {
         try {
-          const response = await fetch('https://api-v2.pendle.finance/core/v2/42161/markets/0x8621c587059357d6c669f72da3bfe1398fc0d0b5/apy-history?time_frame=hour&timestamp_start=2023-12-27T00:00:00.000Z&timestamp_end=2024-02-25T00:00:00.000Z');
-          
+          let today = new Date()
+          let oneMonthAgo = today.setMonth(today.getMonth() - 1)
+          oneMonthAgo = new Date(oneMonthAgo).toISOString().split('T')[0] + 'T00:00:00.000Z'
+          today = new Date().toISOString().split('T')[0] + 'T00:00:00.000Z';
+          const response = await fetch(`https://api-v2.pendle.finance/core/v3/42161/prices/0xb72b988caf33f3d8a6d816974fe8caa199e5e86c/ohlcv?time_frame=hour&timestamp_start=${oneMonthAgo}&timestamp_end=${today}`);
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           
           const data = await response.json();
-          const parsedData = Papa.parse(data.results, { header: true }).data;
-          setPriceData(parsedData)
+          console.log(data)
+          setPriceData(data.results)
           setPriceDataLoading(false)
           return;
         } catch (error) {

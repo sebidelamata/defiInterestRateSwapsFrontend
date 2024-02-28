@@ -46,7 +46,7 @@ const RepoLend = () => {
                                 <div className="market-borrow-container">Available to Borrow</div>
                                 <div className="market-borrow user-repo-lend-dashboard-item-amount">
                                     <div className="market-borrow-amount">50</div>
-                                    <div className="market-borrow-unit">YT aUSDC</div>
+                                    <div className="market-borrow-unit">USDC</div>
                                 </div>
                                 <button className="borrow-market-button">Borrow</button>
                             </div>

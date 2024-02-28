@@ -18,7 +18,7 @@ const ExecuteTradeButton = ({leverage, payValue}) => {
             address: testnetUSDCContractConfig.address, 
             abi: testnetUSDCContractConfig.abi, 
             functionName: 'goLong', 
-            args: [(leverage*payValue)*10**6, 0, 0.1*(leverage*payValue)*10**6], 
+            args: [(leverage*payValue)*10**6, 1440*60, 0.1*(leverage*payValue)*10**6], 
         }) 
     }
 
