@@ -5,8 +5,8 @@ import {testnetUSDCContractConfig, testnetREPOContractConfig} from '../../abis'
 import { config } from '../main'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi' 
 import { parseEther } from 'viem' 
-import ApproveGLP from "./ApproveGLP"
-import DepositRLP from "./DepositGLP"
+import ApproveRLP from "./ApproveRLP"
+import DepositRLP from "./DepositRLP"
 
 const BuyRLP = () => {
     let { address, isConnecting, isDisconnected } = useAccount(config)
@@ -27,7 +27,7 @@ const BuyRLP = () => {
         <div className="buy-rlp-container">
             {
             approved === null &&
-                <ApproveGLP address={address} approved={approved} setApproved={setApproved} allowanceData={allowanceData}/>
+                <ApproveRLP address={address} approved={approved} setApproved={setApproved} allowanceData={allowanceData}/>
             }
             {
             approved !== null &&

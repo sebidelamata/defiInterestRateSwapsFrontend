@@ -5,7 +5,7 @@ import { config } from '../main'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi' 
 import { parseEther } from 'viem' 
 
-const ApproveGLP = ({address, approved, setApproved, allowanceData}) => {
+const ApproveRLP = ({address, approved, setApproved, allowanceData}) => {
     let { data: hash, isPending, writeContract } = useWriteContract() 
     
     async function submitApproval(e) { 
@@ -18,7 +18,7 @@ const ApproveGLP = ({address, approved, setApproved, allowanceData}) => {
             abi: testnetUSDCContractConfig.abi, 
             functionName: 'approve', 
             args: [testnetREPOContractConfig.address, value*10**6], 
-          }) 
+        }) 
     }
     
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
@@ -28,13 +28,13 @@ const ApproveGLP = ({address, approved, setApproved, allowanceData}) => {
 
     return(
         <form onSubmit={submitApproval}> 
-                <input name="value" placeholder={0} required />
-                <button type="submit">Approve</button>
-                {hash && <div>Transaction Hash: {hash}</div>}
-                {isConfirming && <div>Waiting for confirmation...</div>} 
-                {isConfirmed &&  setApproved(hash)&& <div>Transaction confirmed.</div>} 
-                </form>
+          <input name="value" placeholder={0} required />
+          <button type="submit">Approve</button>
+          {hash && <div>Transaction Hash: {hash}</div>}
+          {isConfirming && <div>Waiting for confirmation...</div>} 
+          {isConfirmed &&  setApproved(hash)&& <div>Transaction confirmed.</div>} 
+        </form>
     )
 }
 
-export default ApproveGLP
+export default ApproveRLP

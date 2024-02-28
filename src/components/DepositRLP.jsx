@@ -42,8 +42,8 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
             <input name="value" placeholder='0' required />
             <button type="submit" disabled={isPending} >Buy $RLP</button>
             {hash && <div>Transaction Hash: {hash}</div>}
-      {isConfirming && <div>Waiting for confirmation...</div>} 
-      {isConfirmed && <div>Transaction confirmed.</div>} 
+            {isConfirming && <div>Waiting for confirmation...</div>} 
+            {isConfirmed && <div>Transaction confirmed.</div>} 
         </form>
     )
     
