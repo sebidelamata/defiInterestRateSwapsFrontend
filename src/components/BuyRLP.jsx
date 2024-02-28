@@ -27,7 +27,7 @@ const BuyRLP = () => {
         <div className="buy-rlp-container">
             {
             approved === null &&
-                <ApproveRLP address={address} approved={approved} setApproved={setApproved} allowanceData={allowanceData}/>
+                <ApproveRLP setApproved={setApproved}/>
             }
             {
             approved !== null &&

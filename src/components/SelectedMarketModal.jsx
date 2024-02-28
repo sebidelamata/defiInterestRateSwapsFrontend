@@ -8,25 +8,22 @@ const SelectedMarketModal = ({priceData, priceDataLoading, priceDataError}) => {
         return <div className='loading'>There was a network error</div>
     }
 
-    const timestamps = priceData.map(entry => new Date(entry.timestamp * 1000));
-    const underlyingApy = priceData.map(entry => 1 - entry.underlyingApy);
-    const impliedApy = priceData.map(entry => 1 - entry.impliedApy);
+    const time = priceData.map(entry => new Date(entry.time));
+    const close = priceData.map(entry => entry.close);
     
     const parsedData = {
-        timestamps,
-        underlyingApy,
-        impliedApy
+        time,
+        close,
     }
     const twentyFourHrData = {
-        timestamps: timestamps.slice(timestamps.length - 25, timestamps.length),
-        underlyingApy: underlyingApy.slice(underlyingApy.length - 25, underlyingApy.length),
-        impliedApy: impliedApy.slice(impliedApy.length - 25, impliedApy.length)
+        timestamps: time.slice(time.length - 25, time.length),
+        close: close.slice(close.length - 25, close.length)
     }
 
-    const twentyFourHrPctChange = Math.round(((twentyFourHrData.impliedApy[0] - twentyFourHrData.impliedApy[twentyFourHrData.impliedApy.length - 1]) / twentyFourHrData.impliedApy[0]) * 1000000) / 10000
+    const twentyFourHrPctChange = Math.round(((twentyFourHrData.close[0] - twentyFourHrData.close[twentyFourHrData.close.length - 1]) / twentyFourHrData.close[0]) * 1000000) / 10000
 
-    const twentyFourHrMin = Math.min(...twentyFourHrData.impliedApy)
-    const twentyFourHrMax = Math.max(...twentyFourHrData.impliedApy)
+    const twentyFourHrMin = Math.min(...twentyFourHrData.close).toFixed(4)
+    const twentyFourHrMax = Math.max(...twentyFourHrData.close).toFixed(4)
 
     return(
         
@@ -34,7 +31,7 @@ const SelectedMarketModal = ({priceData, priceDataLoading, priceDataError}) => {
             <select name="select-market-selector" id="selectMarket" defaultValue={'aUSDC'}>
                 <option value="YT aUSDC">YT aUSDC</option>
             </select>
-            <div  className="selected-market-price">{`Last Price: ${parsedData.impliedApy[parsedData.impliedApy.length - 1]} USDC`}</div>
+            <div  className="selected-market-price">{`Last Price: ${parsedData.close[parsedData.close.length - 1].toFixed(4)} USDC`}</div>
             <div className="twenty-four-hr-change">
                 <div className="twenty-four-hr-change-title">24hr % Change:</div>
                 <div className="twenty-four-hr-change-amount">{`${twentyFourHrPctChange}%`}</div>
