@@ -16,6 +16,7 @@
     "@web3modal/ethers": "^4.0.10",
     "@web3modal/wagmi": "^4.0.10",
     "ethers": "^6.11.1",
+    "luxon": "^3.4.4",
     "papaparse": "^5.4.1",
     "plotly.js": "^2.29.1",
     "react": "^18.2.0",

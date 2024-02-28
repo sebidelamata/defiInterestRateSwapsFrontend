@@ -1,21 +1,23 @@
-import { useState } from "react"
-import { useAccount, useReadContract } from "wagmi"
+import { useState, useEffect } from "react"
+import { useAccount, useReadContract, useReadContracts } from "wagmi"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
 import { config } from "../main"
+import IndividualPositionRow from "./IndividualPositionRow"
 
 const PositionsMenu = () => {
     const [selectedPostion, setSelectedPosition] = useState('Positions')
     let { address, isConnecting, isDisconnected } = useAccount(config)
 
-    let userPositionsFetch = useReadContract({
+    let userPositionsLengthFetch = useReadContract({
         abi: testnetREPOContractConfig.abi,
         address: testnetREPOContractConfig.address,
         functionName: 'loans',
         args: [address],
         watch: true,
         chainId:14997,
-      })
-    console.log(userPositionsFetch)
+    })
+    userPositionsLengthFetch = parseInt(userPositionsLengthFetch.data)
+    console.log(userPositionsLengthFetch)
 
     return(
         <div className="positions-menu">
@@ -28,15 +30,19 @@ const PositionsMenu = () => {
                 selectedPostion === 'Positions' &&
                 <div className="positions-table">
                    <ul className="positions-table-headers">
-                        <li className="positions-table-headers-position">Position</li>
                         <li className="positions-table-headers-net-value">Net Value</li>
-                        <li className="positions-table-headers-size">Size</li>
                         <li className="positions-table-headers-collateral">Collateral</li>
-                        <li className="positions-table-headers-entry-price">Entry Price</li>
-                        <li className="positions-table-headers-mark-price">Mark Price</li>
-                        <li className="positions-table-headers-liq-price">Liquidation Price</li>
+                        <li className="positions-table-headers-expiry">Expiry</li>
                    </ul>
-                   <div className="positions-table-body-no-positions">No open positions</div>
+                   <ul className="position-rows-list">
+                        {
+                            Array.from({length: userPositionsLengthFetch}, (_, index) => (
+                                <li key={`position_${index}`}>
+                                    <IndividualPositionRow positionNumber={index + 1}/>
+                                </li>
+                            ))
+                        }
+                   </ul>
                 </div>
             }
             {

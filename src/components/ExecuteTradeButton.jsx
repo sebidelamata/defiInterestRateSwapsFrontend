@@ -4,7 +4,7 @@ import { useState } from "react"
 import ApproveLong from "./ApproveLong"
 
 const ExecuteTradeButton = ({leverage, payValue}) => {
-    console.log(testnetREPOContractConfig.abi)
+    //console.log(testnetREPOContractConfig.abi)
     const [approved, setApproved] = useState(null)
     let { data: hashApprove, isPending, writeContract } = useWriteContract() 
     
