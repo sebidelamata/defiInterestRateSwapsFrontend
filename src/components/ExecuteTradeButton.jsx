@@ -2,7 +2,7 @@ import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
 import { testnetUSDCContractConfig, testnetREPOContractConfig } from "../../abis"
 
 const ExecuteTradeButton = ({leverage, payValue}) => {
-
+    console.log(testnetREPOContractConfig.abi)
     let { data: hashApprove, isPending, writeContract } = useWriteContract() 
     
     async function submitApproval(e) { 
@@ -12,6 +12,13 @@ const ExecuteTradeButton = ({leverage, payValue}) => {
             abi: testnetUSDCContractConfig.abi, 
             functionName: 'approve', 
             args: [testnetREPOContractConfig.address, (leverage*payValue)*10**6], 
+        }) 
+
+        writeContract({ 
+            address: testnetUSDCContractConfig.address, 
+            abi: testnetUSDCContractConfig.abi, 
+            functionName: 'goLong', 
+            args: [(leverage*payValue)*10**6, 0, 0.1*(leverage*payValue)*10**6], 
         }) 
     }
 

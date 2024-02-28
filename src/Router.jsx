@@ -3,6 +3,7 @@ import App from "./App";
 import ErrorPage from "./ErrorPage";
 import Earn from "./Earn";
 import Trade from "./Trade";
+import RepoLend from "./RepoLend";
 
 
 const Router = () => {
@@ -19,7 +20,12 @@ const Router = () => {
     {
       path: '/trade',
       element: <Trade classname='trade-page'/>
+    },
+    {
+      path: '/repolend',
+      element: <RepoLend />
     }
+
   ]);
 
   return <RouterProvider router={router} />;

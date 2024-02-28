@@ -22,6 +22,9 @@ const Navbar = () => {
                         <Link to={"/earn"}>Earn</Link>
                     </li>
                     <li className="nav-bar-link">
+                        <Link to={"/repolend"}>RepoLend</Link>
+                    </li>
+                    <li className="nav-bar-link">
                         <Link>Docs</Link>
                     </li>
                 </ul>

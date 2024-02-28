@@ -210,7 +210,7 @@ input:hover{
   align-items: center;
   width: 50vw;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
 }
 
 .nav-bar-link-list-right{
@@ -547,4 +547,12 @@ input:hover{
 
 .execute-trade-button{
   margin-bottom: 5svh;
+}
+
+.repo-lend-body{
+  background-color: var(--color-1);
+}
+
+.repo-lend-title{
+  font-size: xx-large;
 }

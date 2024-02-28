@@ -39,7 +39,15 @@ const OverviewModal = () => {
       })
     // remove usdc decimals
     //userBalanceRLPFetch = (parseInt(userBalanceRLPFetch.data) * 10**-6).toFixed(2)
-    console.log(userBalanceRLPFetch)
+    let oracleFetch = useReadContract({
+        abi: testnetREPOContractConfig.abi,
+        address: testnetREPOContractConfig.address,
+        functionName: '"oracle"',
+        args: [],
+        watch: true,
+        chainId:14997,
+      })
+    console.log(oracleFetch)
 
     return(
         <div className="overview-modal">
