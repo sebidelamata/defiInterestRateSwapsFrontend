@@ -12,11 +12,12 @@ const ApproveGLP = ({address, approved, setApproved, allowanceData}) => {
         e.preventDefault() 
         const formData = new FormData(e.target) 
         const value = formData.get('value')
+        console.log(value)
         writeContract({ 
-            address: testnetREPOContractConfig.address, 
-            abi: testnetREPOContractConfig.abi, 
+            address: testnetUSDCContractConfig.address, 
+            abi: testnetUSDCContractConfig.abi, 
             functionName: 'approve', 
-            args: [testnetREPOContractConfig.address, parseEther(value)], 
+            args: [testnetREPOContractConfig.address, value*10**6], 
           }) 
     }
     
@@ -27,7 +28,7 @@ const ApproveGLP = ({address, approved, setApproved, allowanceData}) => {
 
     return(
         <form onSubmit={submitApproval}> 
-                <input name="value" placeholder={(parseInt(allowanceData.data) * 10**-18).toFixed(2)} required />
+                <input name="value" placeholder={0} required />
                 <button type="submit">Approve</button>
                 {hash && <div>Transaction Hash: {hash}</div>}
                 {isConfirming && <div>Waiting for confirmation...</div>} 

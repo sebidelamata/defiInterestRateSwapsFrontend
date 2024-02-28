@@ -7,7 +7,7 @@ import { parseEther } from 'viem'
 
 const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
 
-    let { data: hash, isPending, writeContract } = useWriteContract() 
+    let { data: hash, error, isPending, writeContract } = useWriteContract() 
     async function submitDeposit(e) { 
         e.preventDefault() 
         const formData = new FormData(e.target) 
@@ -16,11 +16,10 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
             address: testnetREPOContractConfig.address, 
             abi: testnetREPOContractConfig.abi, 
             functionName: 'deposit', 
-            args: [1000, "0x8E11D12876633885629ffA329Eb7bdAb4AD0Cd3B"]
+            args: [value*10**6, address]
           }) 
-          console.log(hash)
-        setDepositTxHash(hash)
-        setShowTransactionHash(true)
+        // setDepositTxHash(hash)
+        // setShowTransactionHash(true)
         
     }
 
@@ -28,6 +27,9 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
     useWaitForTransactionReceipt({ 
       hash, 
     })
+    console.log(hash)
+    console.log(error)
+    console.log(isConfirmed)
 
 
     
@@ -39,6 +41,9 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
         <form onSubmit={submitDeposit}> 
             <input name="value" placeholder='0' required />
             <button type="submit" disabled={isPending} >Buy $RLP</button>
+            {hash && <div>Transaction Hash: {hash}</div>}
+      {isConfirming && <div>Waiting for confirmation...</div>} 
+      {isConfirmed && <div>Transaction confirmed.</div>} 
         </form>
     )
     
