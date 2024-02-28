@@ -22,7 +22,7 @@ const OverviewModal = () => {
         abi: testnetREPOContractConfig.abi,
         address: testnetREPOContractConfig.address,
         functionName: 'balanceOf',
-        args: ['0x2e3aFd34fa0C2EefD22902603B58AdC43f08A68D'],
+        args: [address],
         watch: true,
         chainId:14997,
       })
