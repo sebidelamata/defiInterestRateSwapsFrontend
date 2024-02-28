@@ -551,8 +551,64 @@ input:hover{
 
 .repo-lend-body{
   background-color: var(--color-1);
+  width: 100vw;
+  height: 100svh;
 }
 
 .repo-lend-title{
   font-size: xx-large;
+}
+
+.markets-list{
+  display: grid;
+  grid-template-columns: auto;
+  gap: min(0.2em);
+}
+
+.market-list-item{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(3, auto);
+  display: grid;
+  border-radius: 2em;
+  border-color: var(--color-2);
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.2em;
+  box-shadow: inset 0 0 0.5em 0 var(--color-2),
+    0 0 0.5em 0 var(--color-2);
+  background-color: var(--color-1);
+}
+
+.market-title{
+  font-size: x-large;
+  font-weight: 900;
+}
+
+.market-stat-title,
+.user-repo-lend-dashboard-item-title{
+  font-weight: 700;
+}
+
+.market-stat-amount,
+.user-repo-lend-dashboard-item-amount{
+  font-weight: 200;
+}
+
+.user-repo-lend-dashboard{
+  display: grid;
+  gap: min(0.2em);
+}
+
+.market-stats{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+}
+
+.user-market-wallet-balance,
+.market-borrow,
+.market-supply{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
 }
