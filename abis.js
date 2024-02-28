@@ -8,7 +8,7 @@ const testnetUSDCContractConfig = {
 }
 
 const testnetREPOContractConfig = {
-    address: '0x2e3aFd34fa0C2EefD22902603B58AdC43f08A68D',
+    address: '0x1DDe28cc82e35FcDCAccB9cb34fFc7ec9233682a',
     abi: RepoVaultABI.abi
 }
 

@@ -1,7 +1,21 @@
 import { useState } from "react"
+import { useAccount, useReadContract } from "wagmi"
+import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
+import { config } from "../main"
 
 const PositionsMenu = () => {
     const [selectedPostion, setSelectedPosition] = useState('Positions')
+    let { address, isConnecting, isDisconnected } = useAccount(config)
+
+    let userPositionsFetch = useReadContract({
+        abi: testnetREPOContractConfig.abi,
+        address: testnetREPOContractConfig.address,
+        functionName: 'loans',
+        args: [address],
+        watch: true,
+        chainId:14997,
+      })
+    console.log(userPositionsFetch)
 
     return(
         <div className="positions-menu">
