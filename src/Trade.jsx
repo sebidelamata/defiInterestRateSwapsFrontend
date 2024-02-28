@@ -24,7 +24,6 @@ const Trade = () => {
           }
           
           const data = await response.json();
-          console.log(data)
           setPriceData(data.results)
           setPriceDataLoading(false)
           return;
