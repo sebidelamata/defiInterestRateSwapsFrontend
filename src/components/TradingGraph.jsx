@@ -31,22 +31,42 @@ const TradingGraph = ({priceData, priceDataLoading, priceDataError}) => {
     type: 'candlestick',
     xaxis: 'x',
     yaxis: 'y',
+    autorange: true
 
   };
+  const traceVolume = {
+    x: time,
+    y: volume,
+    type: 'bar',
+    xaxis: 'x',
+    yaxis: 'y2',
+    marker: {
+        color: 'rgb(196, 232, 203)', // Bar color
+    },
+    autorange: true,
+};
 
-  let data = [trace]
+  let data = [trace, traceVolume]
 
   let layout = {
     title: 'Zero Coupon Prices',
     xaxis: {
       autorange: true,
-      rangeslider: {visible: false},
+      rangeslider: {visible: true},
       type: 'date'
     },
     yaxis: {
       autorange: true,
       type: 'linear',
-      tickformat: '$,.2f'
+      tickformat: '$,.3f',
+    },
+    yaxis2: {
+      autorange: true,
+      type: 'linear',
+      tickformat: ',d',
+      overlaying: 'y',
+      side: 'right',
+      title: 'Volume'
     },
     font: {
         family: 'Roboto',

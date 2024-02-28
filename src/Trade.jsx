@@ -4,7 +4,6 @@ import TradeEntryModal from "./components/TradeEntryModal"
 import Navbar from "./components/Navbar"
 import TradingGraph from "./components/TradingGraph"
 import { useState, useEffect } from "react"
-import Papa from 'papaparse';
 
 const Trade = () => {
 
