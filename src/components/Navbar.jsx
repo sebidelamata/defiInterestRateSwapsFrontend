@@ -12,6 +12,9 @@ const Navbar = () => {
                 <div className="protocol-name">
                     REPO Interest Rate Swaps Protocol
                 </div>
+                <div className="protocol-tagline">
+                    Protect Yourself From Interest Rate Volatility
+                </div>
             </div>
             <div className="navbar-bottom-row">
                 <ul className="nav-bar-link-list-center">
@@ -25,7 +28,7 @@ const Navbar = () => {
                         <Link to={"/repolend"}>RepoLend</Link>
                     </li>
                     <li className="nav-bar-link">
-                        <Link>Docs</Link>
+                        <Link to={'/docs'}>Docs</Link>
                     </li>
                 </ul>
                 <ul className="nav-bar-link-list-right">

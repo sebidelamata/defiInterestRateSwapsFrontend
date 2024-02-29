@@ -1,6 +1,8 @@
 import Navbar from "./components/Navbar"
+import { testnetREPOContractConfig } from "../abis"
 
 const RepoLend = () => {
+    console.log(testnetREPOContractConfig.abi)
     return(
         <div className="repo-lend-container">
             <Navbar/>

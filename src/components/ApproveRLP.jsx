@@ -30,9 +30,11 @@ const ApproveRLP = ({setApproved}) => {
         <form onSubmit={submitApproval}> 
           <input name="value" placeholder={0} required />
           <button type="submit">Approve</button>
-          {hash && <div>Transaction Hash: {hash}</div>}
-          {isConfirming && <div>Waiting for confirmation...</div>} 
-          {isConfirmed &&  setApproved(hash)&& <div>Transaction confirmed.</div>} 
+          <div className="transaction-details">
+            {hash && <div>Transaction Hash: {hash}</div>}
+            {isConfirming && <div>Waiting for confirmation...</div>} 
+            {isConfirmed &&  setApproved(hash)&& <div>Transaction confirmed.</div>} 
+          </div>
         </form>
     )
 }

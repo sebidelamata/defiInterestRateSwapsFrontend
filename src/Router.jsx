@@ -4,6 +4,7 @@ import ErrorPage from "./ErrorPage";
 import Earn from "./Earn";
 import Trade from "./Trade";
 import RepoLend from "./RepoLend";
+import Docs from "./Docs";
 
 
 const Router = () => {
@@ -24,8 +25,11 @@ const Router = () => {
     {
       path: '/repolend',
       element: <RepoLend />
+    },
+    {
+      path: '/docs',
+      element: <Docs />
     }
-
   ]);
 
   return <RouterProvider router={router} />;

@@ -34,16 +34,18 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
 
     
     {isPending && 'pending...'} 
-    {isConfirming && <div>Waiting for confirmation...</div>} 
-    {isConfirmed && <div>Transaction confirmed.</div>} 
+    {isConfirming && <div className="transaction-details">Waiting for confirmation...</div>} 
+    {isConfirmed && <div className="transaction-details">Transaction confirmed.</div>} 
 
     return(
         <form onSubmit={submitDeposit}> 
             <input name="value" placeholder='0' required />
             <button type="submit" disabled={isPending} >Buy $RLP</button>
-            {hash && <div>Transaction Hash: {hash}</div>}
-            {isConfirming && <div>Waiting for confirmation...</div>} 
-            {isConfirmed && <div>Transaction confirmed.</div>} 
+            <div className="transaction-details">
+                {hash && <div>Transaction Hash: {hash}</div>}
+                {isConfirming && <div>Waiting for confirmation...</div>} 
+                {isConfirmed && <div>Transaction confirmed.</div>} 
+            </div>
         </form>
     )
     

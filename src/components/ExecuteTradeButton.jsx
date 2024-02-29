@@ -35,9 +35,11 @@ const ExecuteTradeButton = ({leverage, payValue, positionTerm}) => {
                 approved !== null &&
                 <form onSubmit={submitLong}>
                     <button className="execute-trade-button" type="submit">Short aUSDC Rates</button>
-                    {hashApprove && <div>Transaction Hash: {hashApprove}</div>}
-                    {isConfirming && <div>Waiting for confirmation...</div>} 
-                    {isConfirmed && <div>Transaction confirmed.</div>} 
+                    <div className="transaction-details">
+                        {hashApprove && <div className="transaction-details">Transaction Hash: {hashApprove}</div>}
+                        {isConfirming && <div className="transaction-details">Waiting for confirmation...</div>} 
+                        {isConfirmed && <div className="transaction-details">Transaction confirmed.</div>} 
+                    </div>
                 </form>
             }
         </div>

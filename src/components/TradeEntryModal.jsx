@@ -59,7 +59,6 @@ const TradeEntryModal = () => {
         if(PTTokenExpiryFetch.data !== null && PTTokenExpiryFetch.data !== undefined){
             let expiry = parseInt(PTTokenExpiryFetch.data)
             expiry = new Date(expiry*1000)
-            console.log(expiry)
             let today = new Date()
             expiry = expiry - today
             setPTTokenExpiry(expiry)
