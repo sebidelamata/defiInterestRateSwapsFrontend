@@ -11,6 +11,8 @@ const TradeEntryModal = () => {
     //const [tradeDirection, setTradeDirection] = useState('Long')
     const [leverage, setLeverage] = useState(1.00);
     const [payValue, setPayValue] = useState(1.00)
+    // min value one day
+    const [positionTerm, setPositionTerm] = useState(1440 * 60)
 
     let { address, isConnecting, isDisconnected } = useAccount(config)
 
@@ -42,7 +44,12 @@ const TradeEntryModal = () => {
         e.preventDefault()
         setPayValue(userBalanceUSDCFetch)
     }
+    
+    const days = Math.floor(positionTerm / (60 * 60 * 24));
+    const hours = Math.floor((positionTerm % (60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((positionTerm % (60 * 60)) / (60));
 
+    console.log(days, hours, minutes)
     return(
         <div className="trade-entry-modal-container">
             <form action="" method="POST" className="trade-entry-modal">
@@ -62,29 +69,51 @@ const TradeEntryModal = () => {
                         </div>
                     </div>
                 </div>
-                <div>this will be term of financing</div>
-                <div className="trade-entry-payment-size">
-                    <div className="trade-entry-payment-size-top-row">
-                        {/* <div className="trade-entry-payment-size-direction">{tradeDirection}</div> */}
-                        <div className="trade-entry-payment-size-leverage">{`Leverage ${leverage}X`}</div>
+                <div className="set-position-term-container">
+                    <div className="set-position-term-title">
+                        Set Position Term
                     </div>
-                    <div className="trade-entry-payment-size-bottom-row">
-                        <div className="trade-entry-payment-size-bottom-row-left">
-                            {`${leverage * payValue} YT aUSDC`}
-                        </div>
-                        <div className="trade-entry-payment-size-bottom-row-right"></div>
+                    <div className="set-position-term-current-value">
+                        {`Contract Expiry in ${days} Days, ${hours} Hours, and ${minutes} Minutes`}
                     </div>
+                    <div className="set-position-term-disclaimer">
+                        Minimum Term: 1 Day
+                    </div>
+                    <ReactSlider
+                        className="horizontal-slider"
+                        thumbClassName="example-thumb"
+                        trackClassName="example-track"
+                        defaultValue={1440*60}
+                        onChange={(props, state) => setPositionTerm(props)}
+                        max={1440*60*365}
+                        min={1440*60}
+                        step={60}
+                    />
                 </div>
-                <ReactSlider
-                    className="horizontal-slider"
-                    thumbClassName="example-thumb"
-                    trackClassName="example-track"
-                    defaultValue={1.00}
-                    onChange={(props, state) => setLeverage(props)}
-                    max={100}
-                    min={0}
-                step={0.01}
-                />
+                <div className="trade-entry-size-container">
+                    <div className="trade-entry-payment-size">
+                        <div className="trade-entry-payment-size-top-row">
+                            {/* <div className="trade-entry-payment-size-direction">{tradeDirection}</div> */}
+                            <div className="trade-entry-payment-size-leverage">{`Leverage ${leverage}X`}</div>
+                        </div>
+                        <div className="trade-entry-payment-size-bottom-row">
+                            <div className="trade-entry-payment-size-bottom-row-left">
+                                {`${leverage * payValue} PT aUSDC`}
+                            </div>
+                            <div className="trade-entry-payment-size-bottom-row-right"></div>
+                        </div>
+                    </div>
+                    <ReactSlider
+                        className="horizontal-slider"
+                        thumbClassName="example-thumb"
+                        trackClassName="example-track"
+                        defaultValue={1.00}
+                        onChange={(props, state) => setLeverage(props)}
+                        max={100}
+                        min={0}
+                    step={0.01}
+                    />
+                </div>
                 <div className="trade-entry-stats">
                     <div className="trade-entry-stats-leverage">
                         <div className="trade-entry-stats-leverage-title">Leverage</div>
@@ -100,7 +129,7 @@ const TradeEntryModal = () => {
                     </div>
                 </div>
             </form>
-            <ExecuteTradeButton leverage={leverage} payValue={payValue}/>
+            <ExecuteTradeButton leverage={leverage} payValue={payValue} positionTerm={positionTerm}/>
         </div>
     )
 }

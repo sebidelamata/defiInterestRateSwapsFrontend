@@ -1,5 +1,6 @@
 import erc20Abi from './ERC20.json'; 
 import RepoVaultABI from './RepoVault.json'
+import oracleABI from './PtUsdOracle.json'
 
 
 const testnetUSDCContractConfig = {
@@ -8,8 +9,13 @@ const testnetUSDCContractConfig = {
 }
 
 const testnetREPOContractConfig = {
-    address: '0x1DDe28cc82e35FcDCAccB9cb34fFc7ec9233682a',
+    address: '0xFb78eee800551EFDd6F742E3204D2E807220F140',
     abi: RepoVaultABI.abi
 }
 
-export {testnetUSDCContractConfig, testnetREPOContractConfig}
+const testnetOracleContractConfig = {
+    address: '0x99f115d6EE90CBBB619Aa8a31CCde2EF89Fd41D2',
+    abi: oracleABI.abi
+}
+
+export {testnetUSDCContractConfig, testnetREPOContractConfig, testnetOracleContractConfig}

@@ -3,7 +3,7 @@ import { testnetUSDCContractConfig, testnetREPOContractConfig } from "../../abis
 import { useState } from "react"
 import ApproveLong from "./ApproveLong"
 
-const ExecuteTradeButton = ({leverage, payValue}) => {
+const ExecuteTradeButton = ({leverage, payValue, positionTerm}) => {
     //console.log(testnetREPOContractConfig.abi)
     const [approved, setApproved] = useState(null)
     let { data: hashApprove, isPending, writeContract } = useWriteContract() 
@@ -15,7 +15,7 @@ const ExecuteTradeButton = ({leverage, payValue}) => {
             address: testnetREPOContractConfig.address, 
             abi: testnetREPOContractConfig.abi, 
             functionName: 'goLong', 
-            args: [(leverage*payValue)*10**6, 1440*60, 0.1*(leverage*payValue)*10**6], 
+            args: [(leverage*payValue)*10**6, positionTerm, 0.1*(leverage*payValue)*10**6], 
         }) 
     }
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
@@ -32,7 +32,7 @@ const ExecuteTradeButton = ({leverage, payValue}) => {
             {
                 approved !== null &&
                 <form onSubmit={submitLong}>
-                    <button className="execute-trade-button" type="submit">Long aUSDC Rates</button>
+                    <button className="execute-trade-button" type="submit">Short aUSDC Rates</button>
                     {hashApprove && <div>Transaction Hash: {hashApprove}</div>}
                     {isConfirming && <div>Waiting for confirmation...</div>} 
                     {isConfirmed && <div>Transaction confirmed.</div>} 

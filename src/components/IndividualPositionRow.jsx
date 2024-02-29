@@ -3,6 +3,7 @@ import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis
 import { config } from "../main"
 import { useState, useEffect } from "react"
 import { DateTime } from "luxon";
+import PositionCurrentValue from "./PositionCurrentValue";
 
 const IndividualPositionRow = ({positionNumber}) => {
 
@@ -10,7 +11,6 @@ const IndividualPositionRow = ({positionNumber}) => {
     const [collateral, setCollateral] = useState(null)
     const [repurchase, setRepurchase] = useState(null)
     const [expiry, setExpiry] = useState(null)
-    console.log(testnetREPOContractConfig.abi)
 
     
     const userPositionFetch = useReadContract({
@@ -38,6 +38,9 @@ const IndividualPositionRow = ({positionNumber}) => {
 
     return(
         <ul className="single-position-list">
+            <li className="single-position-repurchase-price">
+                <PositionCurrentValue repurchase={repurchase} collateral={collateral}/>
+            </li>
             <li className="single-position-repurchase-price">{repurchase}</li>
             <li className="single-position-collateral">{collateral}</li>
             <li className="single-position-expiry">{expiry}</li>
