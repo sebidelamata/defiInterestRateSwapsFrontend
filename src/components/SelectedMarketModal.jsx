@@ -28,8 +28,8 @@ const SelectedMarketModal = ({priceData, priceDataLoading, priceDataError}) => {
     return(
         
         <div className="selected-market-modal">
-            <select name="select-market-selector" id="selectMarket" defaultValue={'aUSDC'}>
-                <option value="YT aUSDC">YT aUSDC</option>
+            <select name="select-market-selector" id="selectMarket" defaultValue={'PT aUSDC'}>
+                <option value="YT aUSDC">PT aUSDC</option>
             </select>
             <div  className="selected-market-price">{`Last Price: ${parsedData.close[parsedData.close.length - 1].toFixed(4)} USDC`}</div>
             <div className="twenty-four-hr-change">

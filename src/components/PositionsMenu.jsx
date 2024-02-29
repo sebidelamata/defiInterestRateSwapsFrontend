@@ -17,7 +17,6 @@ const PositionsMenu = () => {
         chainId:14997,
     })
     userPositionsLengthFetch = parseInt(userPositionsLengthFetch.data)
-    console.log(userPositionsLengthFetch)
 
     return(
         <div className="positions-menu">
@@ -38,7 +37,7 @@ const PositionsMenu = () => {
                         {
                             Array.from({length: userPositionsLengthFetch}, (_, index) => (
                                 <li key={`position_${index}`}>
-                                    <IndividualPositionRow positionNumber={index + 1}/>
+                                    <IndividualPositionRow positionNumber={index + 1} address={address}/>
                                 </li>
                             ))
                         }

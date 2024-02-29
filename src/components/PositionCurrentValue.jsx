@@ -14,14 +14,18 @@ const PositionCurrentValue = ({repurchase, collateral}) => {
         watch: true,
         chainId:14997,
     })
-    console.log(testnetOracleContractConfig.address)
     console.log(currentPriceFetch)
-    let mockFetch = 0.97
-    let calculatedCurrentValue = (mockFetch * collateral) - repurchase
-    setCurrentValue(calculatedCurrentValue)
+
+    useEffect(() => {
+        if(currentPriceFetch.data !== null && currentPriceFetch.data === undefined){
+            let calculatedCurrentValue = (currentPriceFetch * collateral) - repurchase
+            setCurrentValue(calculatedCurrentValue)
+        }
+    },[currentPriceFetch.data])
     
     return(
-        <div>{`${currentValue} USDC`}</div>
+        <div></div>
+        // <div>{`${currentValue} USDC`}</div>
     )
 }
 

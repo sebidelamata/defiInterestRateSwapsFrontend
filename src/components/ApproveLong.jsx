@@ -5,7 +5,7 @@ import { config } from '../main'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi' 
 import { parseEther } from 'viem' 
 
-const ApproveLong = ({setApproved, value}) => {
+const ApproveLong = ({setApproved, approved, value}) => {
     let { data: hash, isPending, writeContract } = useWriteContract() 
     
     async function submitApproval(e) { 
@@ -16,7 +16,6 @@ const ApproveLong = ({setApproved, value}) => {
             functionName: 'approve', 
             args: [testnetREPOContractConfig.address, value], 
         })
-        setApproved(null) 
     }
     
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
@@ -24,12 +23,16 @@ const ApproveLong = ({setApproved, value}) => {
       hash, 
     }) 
 
+    useEffect(() => {
+      setApproved(hash)
+    }, [isConfirmed])
+
     return(
         <form onSubmit={submitApproval}> 
           <button type="submit">Approve</button>
           {hash && <div>Transaction Hash: {hash}</div>}
           {isConfirming && <div>Waiting for confirmation...</div>} 
-          {isConfirmed &&  setApproved(hash)&& <div>Transaction confirmed.</div>} 
+          {isConfirmed &&  approved && <div>Transaction confirmed.</div>} 
         </form>
     )
 }

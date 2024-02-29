@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ReactSlider from 'react-slider'
 import { useAccount, useReadContract } from 'wagmi'
-import {testnetUSDCContractConfig, testnetREPOContractConfig} from '../../abis'
+import {testnetUSDCContractConfig, testnetREPOContractConfig, testnetPTTokenContractConfig} from '../../abis'
 import { getAccount } from '@wagmi/core'
 import { config } from '../main'
 import ExecuteTradeButton from "./ExecuteTradeButton"
@@ -11,6 +11,7 @@ const TradeEntryModal = () => {
     //const [tradeDirection, setTradeDirection] = useState('Long')
     const [leverage, setLeverage] = useState(1.00);
     const [payValue, setPayValue] = useState(1.00)
+    const [PTTokenExpiry, setPTTokenExpiry] = useState(null)
     // min value one day
     const [positionTerm, setPositionTerm] = useState(1440 * 60)
 
@@ -31,25 +32,42 @@ const TradeEntryModal = () => {
     // remove usdc decimals
     userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
 
-    let userBalanceRepoFetch = useReadContract({
-        abi: testnetREPOContractConfig.abi,
-        address: testnetREPOContractConfig.address,
-        functionName: "balanceOf",
-        args: [address],
-        watch: true,
-        chainId:14997,
-    })
+    // let userBalanceRepoFetch = useReadContract({
+    //     abi: testnetREPOContractConfig.abi,
+    //     address: testnetREPOContractConfig.address,
+    //     functionName: "balanceOf",
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    // })
     
     const handleMaxButtonClick = (e) => {
         e.preventDefault()
         setPayValue(userBalanceUSDCFetch)
     }
     
-    const days = Math.floor(positionTerm / (60 * 60 * 24));
-    const hours = Math.floor((positionTerm % (60 * 60 * 24)) / (60 * 60));
-    const minutes = Math.floor((positionTerm % (60 * 60)) / (60));
+    let PTTokenExpiryFetch = useReadContract({
+        abi: testnetPTTokenContractConfig.abi,
+        address: testnetPTTokenContractConfig.address,
+        functionName: "expiry",
+        args: [],
+        watch: true,
+        chainId:14997,
+    })
 
-    console.log(days, hours, minutes)
+    useEffect(() => {
+        if(PTTokenExpiryFetch.data !== null && PTTokenExpiryFetch.data !== undefined){
+            let expiry = parseInt(PTTokenExpiryFetch.data)
+            expiry = new Date(expiry*1000)
+            console.log(expiry)
+            let today = new Date()
+            expiry = expiry - today
+            setPTTokenExpiry(expiry)
+        }
+    },[PTTokenExpiryFetch.data])
+    
+    const days = Math.floor(positionTerm / (60 * 60 * 24 * 1000));
+
     return(
         <div className="trade-entry-modal-container">
             <form action="" method="POST" className="trade-entry-modal">
@@ -74,7 +92,14 @@ const TradeEntryModal = () => {
                         Set Position Term
                     </div>
                     <div className="set-position-term-current-value">
-                        {`Contract Expiry in ${days} Days, ${hours} Hours, and ${minutes} Minutes`}
+                        {
+                            days + 1 === 1 &&
+                            `Contract Expiry in ${days + 1} Day`
+                        }
+                        {
+                            days + 1 !== 1 &&
+                            `Contract Expiry in ${days + 1} Days`
+                        }
                     </div>
                     <div className="set-position-term-disclaimer">
                         Minimum Term: 1 Day
@@ -85,9 +110,9 @@ const TradeEntryModal = () => {
                         trackClassName="example-track"
                         defaultValue={1440*60}
                         onChange={(props, state) => setPositionTerm(props)}
-                        max={1440*60*365}
+                        max={PTTokenExpiry}
                         min={1440*60}
-                        step={60}
+                        step={1440*60}
                     />
                 </div>
                 <div className="trade-entry-size-container">

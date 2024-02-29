@@ -1,16 +1,14 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
 import { testnetUSDCContractConfig, testnetREPOContractConfig } from "../../abis"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ApproveLong from "./ApproveLong"
 
 const ExecuteTradeButton = ({leverage, payValue, positionTerm}) => {
-    //console.log(testnetREPOContractConfig.abi)
     const [approved, setApproved] = useState(null)
     let { data: hashApprove, isPending, writeContract } = useWriteContract() 
     
     async function submitLong(e) { 
         e.preventDefault() 
-
         writeContract({ 
             address: testnetREPOContractConfig.address, 
             abi: testnetREPOContractConfig.abi, 
@@ -21,13 +19,17 @@ const ExecuteTradeButton = ({leverage, payValue, positionTerm}) => {
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
         useWaitForTransactionReceipt({ 
         hashApprove, 
-    }) 
+    })
+    
+    useEffect(() => {
+        setApproved(null)
+    }, [hashApprove])
 
     return(
         <div>
             {
             approved === null &&
-                <ApproveLong setApproved={setApproved} value={(leverage*payValue)*10**6}/>
+                <ApproveLong setApproved={setApproved} approved={approved} value={(leverage*payValue)*10**6}/>
             }
             {
                 approved !== null &&
