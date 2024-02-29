@@ -28,9 +28,6 @@ const ReedemRLP = ({address}) => {
     useWaitForTransactionReceipt({ 
       hash, 
     })
-    console.log(hash)
-    console.log(error)
-    console.log(isConfirmed)
 
 
     

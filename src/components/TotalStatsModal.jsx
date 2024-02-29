@@ -23,7 +23,6 @@ const TotalStatsModal = () => {
                     <div className="total-stats-modal-item-title">Total Users</div>
                     <div className="total-stats-modal-item-stat">
                         <div className="total-stats-modal-item-stat-amount">0</div>
-                        <div className="total-stats-modal-item-stat-unit">USDC</div>
                     </div>
                 </li>
                 <li className="total-stats-modal-stats-item">

@@ -4,16 +4,17 @@ import EarnLPStaked from "./EarnLPStaked"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
 import { useWriteContract, useReadContract, useAccount } from "wagmi"
 import { config } from "../main"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const EarnLPTokenModal = () => {
 
     let { address, isConnecting, isDisconnected } = useAccount(config)
     const [previewRedeem, setPreviewRedeem] = useState(null)
+    const [numUserRLPShares, setNumUserRLPShares] = useState(null)
 
     let { data: hash, error, isPending, writeContract } = useWriteContract() 
     //
-    const numUserRLPShares = useReadContract({
+    const numUserRLPSharesFetch = useReadContract({
         address: testnetREPOContractConfig.address,
         abi: testnetREPOContractConfig.abi,
         functionName: "balanceOf",
@@ -21,6 +22,11 @@ const EarnLPTokenModal = () => {
         watch: true,
         chainId:14997,
       });
+    
+      useEffect(() => {
+        setNumUserRLPShares(numUserRLPSharesFetch.data)
+      },[numUserRLPSharesFetch.data])
+    console.log(numUserRLPShares)
     
     return(
         <div className="earn-lp-token-modal">
@@ -31,13 +37,13 @@ const EarnLPTokenModal = () => {
                 <li className="earn-lp-price-wallet-staked">
                     <div className="earn-lp-price">
                         <div className="earn-lp-price-title">Price:</div>
-                        <div className="earn-lp-price-amount">{`${((parseInt(numUserRLPShares.data) * 10**-6) / parseInt(previewRedeem)) || '1.00'} $USDC`}</div>
+                        <div className="earn-lp-price-amount">{`${((parseInt(numUserRLPShares) * 10**-6) / parseInt(previewRedeem)) || '1.00'} $USDC`}</div>
                     </div>
                     <div className="earn-lp-wallet">
                         <div className="earn-lp-wallet-title">Wallet:</div>
-                        <div className="earn-lp-wallet-amount">{`${parseInt(numUserRLPShares.data) * 10**-6} $RLP`}</div>
+                        <div className="earn-lp-wallet-amount">{`${parseInt(numUserRLPShares) * 10**-6} $RLP`}</div>
                     </div>
-                    <EarnLPStaked numUserRLPShares={numUserRLPShares} setPreviewRedeem={setPreviewRedeem}/>
+                    <EarnLPStaked numUserRLPShares={numUserRLPShares} previewRedeem={previewRedeem} setPreviewRedeem={setPreviewRedeem}/>
                 </li>
                 <li className="earn-lp-apr-rewards">
                     <div className="earn-lp-apr">
@@ -55,7 +61,7 @@ const EarnLPTokenModal = () => {
                         <div className="earn-lp-total-staked-amount">0 $USDC</div>
                     </div>
                     <div className="earn-lp-total-supply">
-                        <div className="earn-lp-total-supply-title">Title:</div>
+                        <div className="earn-lp-total-supply-title">Total Supply:</div>
                         <div className="earn-lp-total-supply-amount">0 $RLP</div>
                     </div>
                 </li>

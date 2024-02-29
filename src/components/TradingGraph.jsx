@@ -31,8 +31,8 @@ const TradingGraph = ({priceData, priceDataLoading, priceDataError}) => {
     type: 'candlestick',
     xaxis: 'x',
     yaxis: 'y',
-    autorange: true
-
+    autorange: true,
+    name: 'PT aUSDC Zero Coupon Price'
   };
   const traceVolume = {
     x: time,
@@ -44,6 +44,7 @@ const TradingGraph = ({priceData, priceDataLoading, priceDataError}) => {
         color: 'rgb(196, 232, 203)', // Bar color
     },
     autorange: true,
+    name: 'Volume'
 };
 
   let data = [trace, traceVolume]
