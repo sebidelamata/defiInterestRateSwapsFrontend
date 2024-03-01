@@ -34,7 +34,6 @@ const PositionsMenu = () => {
                         <li className="positions-table-headers-expiry">Expiry</li>
                    </ul>
                    <ul className="position-rows-list">
-                    {console.log(userPositionsLengthFetch)}
                         {
                             userPositionsLengthFetch === 0 || isNaN(userPositionsLengthFetch) &&
                             <div>No Open Positions</div>

@@ -20,7 +20,7 @@ const NavbarApproveEVC = ({address, setAccountApproveState}) => {
         useWaitForTransactionReceipt({ 
           hash, 
         }) 
-        console.log(isConfirmed)
+        
     useEffect(() => {
         if(isConfirmed === true){
             setAccountApproveState('approved')

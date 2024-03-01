@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const [accountApproveState, setAccountApproveState] = useState(null)
     let { address, isConnecting, isDisconnected } = useAccount(config)
-    console.log(accountApproveState)
+
     return(
         <div className="nav-bar">
             <div className="protocol-name-and-logo">

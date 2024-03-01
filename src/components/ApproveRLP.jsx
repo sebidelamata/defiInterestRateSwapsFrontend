@@ -12,7 +12,6 @@ const ApproveRLP = ({setApproved}) => {
         e.preventDefault() 
         const formData = new FormData(e.target) 
         const value = formData.get('value')
-        console.log(value)
         writeContract({ 
             address: testnetUSDCContractConfig.address, 
             abi: testnetUSDCContractConfig.abi, 

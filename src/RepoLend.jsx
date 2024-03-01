@@ -15,20 +15,14 @@ const RepoLend = () => {
                 <div className="repo-lend-title">
                     RepoLend
                 </div>
-                <div className="repo-lend-list-title">Lend Assets</div>
+                <div className="repo-lend-list-title">Post Collateral</div>
                 <ul className="lend-list">
                     <li className="lend-container lend-pt-ausdc">
                         <RepoLendAssetItem address={address} config={testnetPTTokenContractConfig} assetString={'PT aUSDC'} type={'lend'}/>
                     </li>
-                    <li className="lend-container lend-pt-steth">
-                        <RepoLendAssetItem address={address} config={testnetUSDCContractConfig} assetString={'USDC'} type={'lend'}/>
-                    </li>
                 </ul>
                 <div className="repo-borrow-list-title">Borrow Assets</div>
                 <ul className="borrow-list">
-                <li className="borrow-container borrow-pt-ausdc">
-                        <RepoLendAssetItem address={address} config={testnetPTTokenContractConfig} assetString={'PT aUSDC'} type={'borrow'}/>
-                    </li>
                     <li className="borrow-container borrow-pt-steth">
                         <RepoLendAssetItem address={address} config={testnetUSDCContractConfig} assetString={'USDC'} type={'borrow'}/>
                     </li>

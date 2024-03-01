@@ -14,7 +14,6 @@ const PositionCurrentValue = ({repurchase, collateral}) => {
         watch: true,
         chainId:14997,
     })
-    //console.log(currentPriceFetch)
 
     useEffect(() => {
         if(currentPriceFetch.data !== null && currentPriceFetch.data === undefined){

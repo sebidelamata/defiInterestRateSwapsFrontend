@@ -5,13 +5,13 @@ import {testnetREPOContractConfig} from '../../abis'
 const RepoLendAssetLend = ({assetString, config, value}) => {
 
     let { data: hash, isPending, writeContract } = useWriteContract() 
-        console.log(config.abi)
+     
     async function submitLend(e) { 
         e.preventDefault() 
         writeContract({ 
             address: config.address, 
             abi: config.abi, 
-            functionName: 'approve', 
+            functionName: 'deposit', 
             args: [config.address, value], 
         })
     }
@@ -30,9 +30,9 @@ const RepoLendAssetLend = ({assetString, config, value}) => {
     return(
         <form onSubmit={submitLend}> 
             <button type="submit">{`Deposit ${assetString}`}</button>
-            {hash && <div>Transaction Hash: {hash}</div>}
-            {isConfirming && <div>Waiting for confirmation...</div>} 
-            {isConfirmed &&  hash && <div>Transaction confirmed.</div>} 
+            {hash && <div className="transaction-details">Transaction Hash: {hash}</div>}
+            {isConfirming && <div className="transaction-details">Waiting for confirmation...</div>} 
+            {isConfirmed &&  hash && <div className="transaction-details">Transaction confirmed.</div>} 
         </form>
     )
 }

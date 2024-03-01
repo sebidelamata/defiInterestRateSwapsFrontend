@@ -9,7 +9,6 @@ import ApproveRLP from "./ApproveRLP"
 import DepositRLP from "./DepositRLP"
 
 const BuyRLP = () => {
-    console.log(testnetREPOContractConfig)
     let { address, isConnecting, isDisconnected } = useAccount(config)
     let [approved, setApproved] = useState(null)
     let [depositTxHash, setDepositTxHash] = useState(null)
