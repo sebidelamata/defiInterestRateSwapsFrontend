@@ -1,16 +1,16 @@
 import { Chain } from "viem"
  
 export const testnet = {
-  id: 14997,
-  name: 'BuildBear Persistent Siryn',
+  id: 42161,
+  name: 'Tenderly Arbitrum Fork',
   nativeCurrency: {
     decimals: 18,
-    name: 'TOKEN',
-    symbol: 'TOKEN',
+    name: 'ETH',
+    symbol: 'ETH',
   },
   rpcUrls: {
     default: {
-      http: ['https://rpc.buildbear.io/persistent-siryn-0132e20a'],
+      http: ['https://rpc.vnet.tenderly.co/devnet/arbdevnet/74678d0f-a389-4508-b53b-a607b8f960b0'],
     },
   },
   blockExplorers: {

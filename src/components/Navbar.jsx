@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom"
 import WalletConnectButton from './WalletConnectButton'
-
+import { useState, useEffect } from "react"
+import NavbarApproveEVC from "./NavbarApproveEVC"
+import { useAccount } from "wagmi"
+import {config} from '../main'
 
 const Navbar = () => {
+
+    const [accountApproveState, setAccountApproveState] = useState(null)
+    let { address, isConnecting, isDisconnected } = useAccount(config)
+    console.log(accountApproveState)
     return(
         <div className="nav-bar">
             <div className="protocol-name-and-logo">
@@ -35,6 +42,13 @@ const Navbar = () => {
                     <li className="nav-bar-link">
                         <Link to={'/trade'}>Trade</Link>
                     </li>
+                    {
+                        accountApproveState === null && (
+                            <li>
+                                <NavbarApproveEVC address={address} setAccountApproveState={setAccountApproveState}/>
+                            </li>
+                        )
+                    }
                     <li className="nav-bar-link">
                         <WalletConnectButton className='button'/>
                     </li>
