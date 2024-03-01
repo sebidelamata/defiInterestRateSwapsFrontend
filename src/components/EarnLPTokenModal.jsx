@@ -14,6 +14,7 @@ const EarnLPTokenModal = () => {
 
     let { data: hash, error, isPending, writeContract } = useWriteContract() 
     //
+    console.log(testnetREPOContractConfig.address)
     const numUserRLPSharesFetch = useReadContract({
         address: testnetREPOContractConfig.address,
         abi: testnetREPOContractConfig.abi,
@@ -22,11 +23,12 @@ const EarnLPTokenModal = () => {
         watch: true,
         chainId:14997,
       });
+      console.log(numUserRLPSharesFetch)
     
       useEffect(() => {
         setNumUserRLPShares(numUserRLPSharesFetch.data)
       },[numUserRLPSharesFetch.data])
-    console.log(numUserRLPShares)
+    console.log(numUserRLPShares + 'hi')
     
     return(
         <div className="earn-lp-token-modal">

@@ -26,6 +26,12 @@ const ApproveRLP = ({setApproved}) => {
       hash, 
     }) 
 
+    useEffect(() => {
+      if (isConfirmed) {
+        setApproved(hash);
+    }
+    }, [hash, isConfirmed, setApproved])
+
     return(
         <form onSubmit={submitApproval}> 
           <input name="value" placeholder={0} required />
@@ -33,7 +39,7 @@ const ApproveRLP = ({setApproved}) => {
           <div className="transaction-details">
             {hash && <div>Transaction Hash: {hash}</div>}
             {isConfirming && <div>Waiting for confirmation...</div>} 
-            {isConfirmed &&  setApproved(hash)&& <div>Transaction confirmed.</div>} 
+            {isConfirmed && <div>Transaction confirmed.</div>} 
           </div>
         </form>
     )
