@@ -27,10 +27,10 @@ const ApproveRLP = ({setApproved}) => {
     }) 
 
     useEffect(() => {
-      if (isConfirmed) {
+      if (isConfirmed === true) {
         setApproved(hash);
     }
-    }, [hash, isConfirmed, setApproved])
+    }, [isConfirmed])
 
     return(
         <form onSubmit={submitApproval}> 

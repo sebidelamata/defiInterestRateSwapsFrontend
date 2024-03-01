@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="nav-bar">
             <div className="protocol-name-and-logo">
                 <div className="protocol-logo">
-                    🦐
+                    <img className="shrimp-icon-navbar" src="./shrimp.svg" alt="Shrimp Icon"></img>
                 </div>
                 <div className="protocol-name">
                     REPO Interest Rate Swaps Protocol
