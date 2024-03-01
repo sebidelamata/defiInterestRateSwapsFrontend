@@ -14,12 +14,12 @@ const testnetUSDCContractConfig = {
 }
 
 const testnetREPOContractConfig = {
-    address: '0xA058F6E14242092Ad57f407A71dC1Eb1313A2Ad4',
+    address: '0x6f4a128B064Cbb61d5e71feC33f7934B64764E25',
     abi: RepoVaultABI.abi
 }
 
 const testnetOracleContractConfig = {
-    address: '0x6cBDf39b170295e22ffd541aBEBD88F53Cded7ea',
+    address: '0xA058F6E14242092Ad57f407A71dC1Eb1313A2Ad4',
     abi: oracleABI.abi
 }
 
@@ -29,22 +29,22 @@ const testnetPTTokenContractConfig = {
 }
 
 const testnetEthereumVaultConnectorConfig = {
-    address: '0x1f63215Dd03836818a69b6E6bdd70F27d4dB1Ab0',
+    address: '0xdEad8922cf151774ACF2CFb9D42B1E56f87C768F',
     abi: EthereumVaultConnectorABI.abi
 }
 
 const testnetRepoPlatformOperatorConfig = {
-    address: '0xcfC4c0d3267e931412301016b9c7302cCf7f0dc8',
+    address: '0xDcfCdC48f3a37c9d57eb5747Fd09124ca80aEa9A',
     abi: RepoPlatformOperatorABI.abi
 }
 
 const testnetFixedYieldCollateralVaultConfig = {
-    address: '0xdEad8922cf151774ACF2CFb9D42B1E56f87C768F',
+    address: '0x6cBDf39b170295e22ffd541aBEBD88F53Cded7ea',
     abi: FixedYieldCollateralVaultABI.abi
 }
 
 const testnetRepoVaultBorrowableConfig = {
-    address: '0xA058F6E14242092Ad57f407A71dC1Eb1313A2Ad4',
+    address: '0xFb78eee800551EFDd6F742E3204D2E807220F140',
     abi: RepoVaultBorrowableABI.abi
 }
 

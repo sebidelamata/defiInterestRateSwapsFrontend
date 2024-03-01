@@ -17,13 +17,13 @@ const projectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID
 
 const repoTestnet = {
   chainId: 14997,
-  name: 'Tenderly Arbitrum Fork',
-  currency: 'ETH',
-  explorerUrl: 'google.com',
-  rpcUrl: 'https://rpc.vnet.tenderly.co/devnet/arbdevnet/74678d0f-a389-4508-b53b-a607b8f960b0',
+  name: 'Network name: BuildBear Persistent Siryn',
+  currency: 'Token',
+  explorerUrl: 'https://explorer.buildbear.io/persistent-siryn-0132e20a',
+  rpcUrl: 'https://rpc.buildbear.io/persistent-siryn-0132e20a',
   rpcUrls: {
     default: {
-      http: ['https://rpc.vnet.tenderly.co/devnet/arbdevnet/74678d0f-a389-4508-b53b-a607b8f960b0'],
+      http: ['https://rpc.buildbear.io/persistent-siryn-0132e20a'],
     },
   },
 }
@@ -44,7 +44,7 @@ export const config = createConfig({
 })
 
 createWeb3Modal({
-  ethersConfig: defaultConfig({ metadata, rpcUrl: "https://rpc.vnet.tenderly.co/devnet/arbdevnet/74678d0f-a389-4508-b53b-a607b8f960b0" }),
+  ethersConfig: defaultConfig({ metadata, rpcUrl: "https://rpc.buildbear.io/persistent-siryn-0132e20a" }),
   wagmiConfig: config,
   chains: [repoTestnet],
   defaultChain: testnet,

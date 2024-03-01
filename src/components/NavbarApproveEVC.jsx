@@ -5,17 +5,15 @@ import { testnetEthereumVaultConnectorConfig } from "../../abis"
 const NavbarApproveEVC = ({address, setAccountApproveState}) => {
     
     let { data: hash, isPending, writeContract } = useWriteContract() 
-        console.log(testnetEthereumVaultConnectorConfig.abi)
 
     async function submitApprove(e) { 
         e.preventDefault() 
         writeContract({ 
             address: testnetEthereumVaultConnectorConfig.address, 
             abi: testnetEthereumVaultConnectorConfig.abi, 
-            functionName: 'approve', 
-            args: [address, testnetEthereumVaultConnectorConfig.address], 
+            functionName: 'setAccountOperator', 
+            args: [address, testnetEthereumVaultConnectorConfig.address, true], 
         })
-        setAccountApproveState('approved')
     }
         
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
@@ -23,9 +21,11 @@ const NavbarApproveEVC = ({address, setAccountApproveState}) => {
           hash, 
         }) 
 
-    // useEffect(() => {
-    //     setAccountApproveState('approved')
-    // }, [address])
+    useEffect(() => {
+        if(isConfirmed === true){
+            setAccountApproveState('approved')
+        }
+    }, [hash])
     return(
         <form onSubmit={submitApprove}> 
             <button type="submit">Approve Account</button>
