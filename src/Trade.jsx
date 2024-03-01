@@ -47,9 +47,11 @@ const Trade = () => {
             </div>
             <Navbar className="nav-bar"/>
             <SelectedMarketModal priceData={priceData} priceDataLoading={priceDataLoading} priceDataError={priceDataError}/>
-            <TradingGraph priceData={priceData} priceDataLoading={priceDataLoading} priceDataError={priceDataError}/>
+            <div className="trade-page-top-row">
+              <TradingGraph className="graph" priceData={priceData} priceDataLoading={priceDataLoading} priceDataError={priceDataError}/>
+              <TradeEntryModal />
+            </div>
             <PositionsMenu />
-            <TradeEntryModal />
         </>
     )
 }

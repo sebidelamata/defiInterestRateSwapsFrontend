@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
-import { testnetEthereumVaultConnectorConfig } from "../../abis"
+import { testnetEthereumVaultConnectorConfig, testnetRepoPlatformOperatorConfig } from "../../abis"
 
 const NavbarApproveEVC = ({address, setAccountApproveState}) => {
     
@@ -12,7 +12,7 @@ const NavbarApproveEVC = ({address, setAccountApproveState}) => {
             address: testnetEthereumVaultConnectorConfig.address, 
             abi: testnetEthereumVaultConnectorConfig.abi, 
             functionName: 'setAccountOperator', 
-            args: [address, testnetEthereumVaultConnectorConfig.address, true], 
+            args: [address, testnetRepoPlatformOperatorConfig.address, true], 
         })
     }
         

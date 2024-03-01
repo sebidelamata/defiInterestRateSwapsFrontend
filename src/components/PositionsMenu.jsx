@@ -34,7 +34,14 @@ const PositionsMenu = () => {
                         <li className="positions-table-headers-expiry">Expiry</li>
                    </ul>
                    <ul className="position-rows-list">
+                    {console.log(userPositionsLengthFetch)}
                         {
+                            userPositionsLengthFetch === 0 || isNaN(userPositionsLengthFetch) &&
+                            <div>No Open Positions</div>
+                        }
+                        {
+                            userPositionsLengthFetch !== 0 &&
+                            typeof(userPositionsLengthFetch) === 'number' &&
                             Array.from({length: userPositionsLengthFetch}, (_, index) => (
                                 <li key={`position_${index}`}>
                                     <IndividualPositionRow positionNumber={index + 1} address={address}/>
@@ -53,7 +60,7 @@ const PositionsMenu = () => {
                         <li className="orders-table-headers-price">Price</li>
                         <li className="orders-table-headers-mark-price">Mark Price</li>
                    </ul>
-                   <div className="orders-table-body-no-positions">No open positions</div>
+                   <div className="orders-table-body-no-positions">No Open Orders</div>
                 </div>
             }
             {

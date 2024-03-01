@@ -76,8 +76,7 @@ const TradeEntryModal = () => {
                 </ul> */}
                 <div className="trade-entry-payment-entry">
                     <div className="trade-entry-payment-entry-top-row">
-                        <div className="trade-entry-payment-entry-title">Pay:</div>
-                        <div className="trade-entry-payment-entry-balance">{`Balance: ${userBalanceUSDCFetch} USDC`}</div>
+                        <div className="trade-entry-payment-entry-balance">{`Wallet: ${userBalanceUSDCFetch} USDC`}</div>
                     </div>
                     <div className="trade-entry-payment-entry-bottom-row">
                         <input className="trade-entry-payment-entry-bottom-row-left" type="number" value={payValue} onChange={handlePayValueChange}></input>
@@ -122,7 +121,7 @@ const TradeEntryModal = () => {
                         </div>
                         <div className="trade-entry-payment-size-bottom-row">
                             <div className="trade-entry-payment-size-bottom-row-left">
-                                {`${leverage * payValue} PT aUSDC`}
+                                {`${(leverage * payValue).toFixed(2)} PT aUSDC`}
                             </div>
                             <div className="trade-entry-payment-size-bottom-row-right"></div>
                         </div>

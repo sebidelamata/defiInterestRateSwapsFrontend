@@ -30,9 +30,9 @@ const ApproveLong = ({setApproved, approved, value}) => {
     return(
         <form onSubmit={submitApproval}> 
           <button type="submit">Approve</button>
-          {hash && <div>Transaction Hash: {hash}</div>}
-          {isConfirming && <div>Waiting for confirmation...</div>} 
-          {isConfirmed &&  approved && <div>Transaction confirmed.</div>} 
+          {hash && <div><div className="transaction-details">Transaction Hash:</div><div className="transaction-details">{hash}</div></div>}
+          {isConfirming && <div className="transaction-details">Waiting for confirmation...</div>} 
+          {isConfirmed &&  approved && <div className="transaction-details">Transaction confirmed.</div>} 
         </form>
     )
 }

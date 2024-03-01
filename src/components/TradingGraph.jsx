@@ -32,7 +32,7 @@ const TradingGraph = ({priceData, priceDataLoading, priceDataError}) => {
     xaxis: 'x',
     yaxis: 'y',
     autorange: true,
-    name: 'PT aUSDC Zero Coupon Price'
+    name: 'PT aUSDC Price'
   };
   const traceVolume = {
     x: time,
@@ -81,7 +81,6 @@ const TradingGraph = ({priceData, priceDataLoading, priceDataError}) => {
       <Plot
           data={data}
           layout={layout}
-          style={{ width: '100%', height: 'auto' }}
       />
   );
 };
