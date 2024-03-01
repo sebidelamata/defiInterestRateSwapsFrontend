@@ -34,8 +34,8 @@ const BuyRLP = () => {
                 <DepositRLP  address={address} setDepositTxHash={setDepositTxHash} setShowTransactionHash={setShowTransactionHash}/>
             }
             {
-                    showTransactionHash === true &&
-                    <div className="transaction-hash"> Transaction Hash: {depositTxHash}</div>
+                showTransactionHash === true &&
+                <div className="transaction-hash"> Transaction Hash: {depositTxHash}</div>
             }
         </div>
     )

@@ -11,8 +11,8 @@ const Docs = () => {
                 <h1 className="docs-description-title"> What is Repo?</h1>
                 <div className="docs-description-body">
                     Repo offers users the ability to hedge variable interest rate volatility.
-                    If you have a loan on Aave, you could be paying 5% today and 10% tomorrow if you are not protected.
-                    With Repo a user can go long or short borrow rates. If borrow rates increase and the user is long rates, they can protect their debt position from interest rate volatiltiy, and do this efficiently though the use of leverage.
+                    If you supply collateral for loans on Aave, you could be earning 10% today and 5% tomorrow if you are not protected. This could potentially lead to a cashflow mismatch between what the user earns on one asset and what they are paying on another.
+                    With Repo a user can go short borrow rates. If rates decrease, the user can be protect from decreased cashflows by holding a leveraged long principal position.
                 </div>
                 <br />
                 <h1 className="docs-description-title">How does Repo do this?</h1>
