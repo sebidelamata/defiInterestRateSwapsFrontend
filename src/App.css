@@ -217,7 +217,8 @@ input:hover{
   align-items: center;
   width: 50vw;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
+  gap: min(0.3em);
 }
 
 .nav-bar{

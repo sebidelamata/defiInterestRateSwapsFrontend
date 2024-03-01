@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import WalletConnectButton from './WalletConnectButton'
 import { useState, useEffect } from "react"
 import NavbarApproveEVC from "./NavbarApproveEVC"
+import NavbarApproveRepOperator from "./NavbarApproveRepOperator"
 import { useAccount } from "wagmi"
 import {config} from '../main'
 
@@ -9,7 +10,7 @@ const Navbar = () => {
 
     const [accountApproveState, setAccountApproveState] = useState(null)
     let { address, isConnecting, isDisconnected } = useAccount(config)
-    
+    console.log(accountApproveState)
     return(
         <div className="nav-bar">
             <div className="protocol-name-and-logo">
@@ -46,6 +47,13 @@ const Navbar = () => {
                         accountApproveState === null && (
                             <li>
                                 <NavbarApproveEVC address={address} setAccountApproveState={setAccountApproveState}/>
+                            </li>
+                        )
+                    }
+                    {
+                        accountApproveState === 'approved' && (
+                            <li>
+                                <NavbarApproveRepOperator address={address} setAccountApproveState={setAccountApproveState}/>
                             </li>
                         )
                     }

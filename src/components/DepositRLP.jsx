@@ -12,6 +12,7 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
         e.preventDefault() 
         const formData = new FormData(e.target) 
         const value = formData.get('value')
+        console.log(value)
         writeContract({ 
             address: testnetREPOContractConfig.address, 
             abi: testnetREPOContractConfig.abi, 
@@ -20,6 +21,7 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
           }) 
         // setDepositTxHash(hash)
         // setShowTransactionHash(true)
+        console.log(error)
         
     }
 
@@ -28,11 +30,7 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
       hash, 
     })
     console.log(hash)
-    console.log(error)
-    console.log(isConfirmed)
 
-
-    
     {isPending && 'pending...'} 
     {isConfirming && <div className="transaction-details">Waiting for confirmation...</div>} 
     {isConfirmed && <div className="transaction-details">Transaction confirmed.</div>} 

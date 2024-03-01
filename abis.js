@@ -1,5 +1,4 @@
 import erc20Abi from './ERC20.json'; 
-import RepoVaultABI from './RepoVault.json'
 import oracleABI from './PtUsdOracle.json'
 import PTTokenABI from './IPPrincipalToken.json'
 import EthereumVaultConnectorABI from './EthereumVaultConnector.json'
@@ -15,7 +14,7 @@ const testnetUSDCContractConfig = {
 
 const testnetREPOContractConfig = {
     address: '0x6f4a128B064Cbb61d5e71feC33f7934B64764E25',
-    abi: RepoVaultABI.abi
+    abi: RepoVaultBorrowableABI.abi
 }
 
 const testnetOracleContractConfig = {
@@ -43,11 +42,6 @@ const testnetFixedYieldCollateralVaultConfig = {
     abi: FixedYieldCollateralVaultABI.abi
 }
 
-const testnetRepoVaultBorrowableConfig = {
-    address: '0xFb78eee800551EFDd6F742E3204D2E807220F140',
-    abi: RepoVaultBorrowableABI.abi
-}
-
 export {
     testnetUSDCContractConfig, 
     testnetREPOContractConfig, 
@@ -56,5 +50,4 @@ export {
     testnetEthereumVaultConnectorConfig,
     testnetRepoPlatformOperatorConfig,
     testnetFixedYieldCollateralVaultConfig,
-    testnetRepoVaultBorrowableConfig
 }

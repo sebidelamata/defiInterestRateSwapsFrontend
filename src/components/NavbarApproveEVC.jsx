@@ -20,18 +20,18 @@ const NavbarApproveEVC = ({address, setAccountApproveState}) => {
         useWaitForTransactionReceipt({ 
           hash, 
         }) 
-
+        console.log(isConfirmed)
     useEffect(() => {
         if(isConfirmed === true){
             setAccountApproveState('approved')
         }
-    }, [hash])
+    }, [isConfirmed])
     return(
         <form onSubmit={submitApprove}> 
             <button type="submit">Approve Account</button>
-            {hash && <div>Transaction Hash: {hash}</div>}
-            {isConfirming && <div>Waiting for confirmation...</div>} 
-            {isConfirmed &&  hash && <div>Transaction confirmed.</div>} 
+            {hash && <div className="transaction-hash">Transaction Hash: {hash}</div>}
+            {isConfirming && <div className="transaction-hash">Waiting for confirmation...</div>} 
+            {isConfirmed &&  hash && <div className="transaction-hash">Transaction confirmed.</div>} 
         </form>
     )
 }

@@ -11,8 +11,8 @@ const NavbarApproveRepOperator = ({address, setAccountApproveState}) => {
         writeContract({ 
             address: testnetRepoPlatformOperatorConfig.address, 
             abi: testnetRepoPlatformOperatorConfig.abi, 
-            functionName: 'setAccountOperator', 
-            args: [address, testnetRepoPlatformOperatorConfig.address, true], 
+            functionName: 'approveAllVaultsOnBehalfOf', 
+            args: [address], 
         })
     }
         
@@ -23,15 +23,15 @@ const NavbarApproveRepOperator = ({address, setAccountApproveState}) => {
 
     useEffect(() => {
         if(isConfirmed === true){
-            setAccountApproveState('approved')
+            setAccountApproveState('vaultApproved')
         }
-    }, [hash])
+    }, [isConfirmed])
     return(
         <form onSubmit={submitApprove}> 
-            <button type="submit">Approve Account</button>
-            {hash && <div>Transaction Hash: {hash}</div>}
-            {isConfirming && <div>Waiting for confirmation...</div>} 
-            {isConfirmed &&  hash && <div>Transaction confirmed.</div>} 
+            <button type="submit">Approve Vault</button>
+            {hash && <div className="transaction-hash">Transaction Hash: {hash}</div>}
+            {isConfirming && <div className="transaction-hash">Waiting for confirmation...</div>} 
+            {isConfirmed &&  hash && <div className="transaction-hash">Transaction confirmed.</div>} 
         </form>
     )
 }

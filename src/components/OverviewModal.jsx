@@ -47,7 +47,6 @@ const OverviewModal = () => {
         watch: true,
         chainId:14997,
       })
-    console.log(oracleFetch)
 
     return(
         <div className="overview-modal">
