@@ -4,6 +4,7 @@ import RepoLendAssetApprove from "./RepoLendAssetApprove";
 import RepoLendAssetLend from "./RepoLendAssetLend";
 import RepoLendAssetBorrow from "./RepoLendAssetBorrow";
 import RepoAssetLendWithdraw from "./RepoLendAssetWitdraw";
+import RepoLendAssetRepay from "./RepoLendAssetRepay";
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis";
 
 const RepoLendAssetItem = ({address, config, assetString, type}) => {
@@ -71,11 +72,11 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
             <div className="repo-lend-asset-deposit-right">
                 <div className="lend-balance-and-max">
                     <div className="lend-balance">
-                        {`Wallet ${userBalanceAndDecimals[0] * userBalanceAndDecimals[1] || 0} ${assetString}`}
+                        {`Wallet ${userBalanceAndDecimals[0] / 10**userBalanceAndDecimals[1] || 0} ${assetString}`}
                     </div>
-                    <button onClick={() => setValue(userBalanceAndDecimals[0] * userBalanceAndDecimals[1] || 0)}>Max</button>
+                    <button onClick={() => setValue(userBalanceAndDecimals[0] / 10**userBalanceAndDecimals[1] || 0)}>Max</button>
                     <div className="lend-balance">
-                        {`Posted: ${userBalanceAndDecimals[2] * userBalanceAndDecimals[1] || 0} ${assetString}`}
+                        {`Posted: ${userBalanceAndDecimals[2] / 10*userBalanceAndDecimals[1] || 0} ${assetString}`}
                     </div>
                 </div>
                 <div className="repo-lend-asset-deposit-bottom-right">
@@ -107,6 +108,12 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
                         // change this back when network is up
                         // approved !== null &&
                         <RepoLendAssetBorrow assetString={assetString} config={config} value={value} usdcBalance={userBalanceAndDecimals[3]}/>
+                    }
+                    {
+                        type === 'borrow' &&
+                        // change this back when network is up
+                        // approved !== null &&
+                        <RepoLendAssetRepay assetString={assetString} config={config} value={value}/>
                     }
                 </div>
             </div>

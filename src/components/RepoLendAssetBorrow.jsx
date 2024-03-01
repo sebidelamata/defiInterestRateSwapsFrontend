@@ -1,16 +1,16 @@
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
 import { useState, useEffect } from "react"
-import {testnetREPOContractConfig} from '../../abis'
+import {testnetREPOContractConfig, testnetUSDCContractConfig} from '../../abis'
 
 const RepoLendAssetBorrow = ({assetString, config, value, usdcBalance}) => {
-    console.log(usdcBalance)
+    console.log(config)
     let { data: hash, isPending, writeContract } = useWriteContract() 
     
     async function submitBorrow(e) { 
         e.preventDefault() 
         writeContract({ 
-            address: config.address, 
-            abi: config.abi, 
+            address: testnetUSDCContractConfig.address, 
+            abi: testnetUSDCContractConfig.abi, 
             functionName: 'approve', 
             args: [config.address, value], 
         })
