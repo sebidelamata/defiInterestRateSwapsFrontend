@@ -3,29 +3,42 @@ import { useAccount, useReadContract } from 'wagmi'
 import {testnetUSDCContractConfig, testnetREPOContractConfig} from '../../abis'
 import { config } from '../main'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi' 
-import { parseEther } from 'viem' 
 
-const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
+const DepositRLP = ({address}) => {
 
-    let { data: hash, error, isPending, writeContract } = useWriteContract() 
+    const { data: allowance, isLoading: isAllowanceLoading } = useReadContract({
+        address: testnetUSDCContractConfig.address,
+        abi: testnetUSDCContractConfig.abi,
+        functionName: "allowance",
+        args: [address, testnetREPOContractConfig.address],
+        watch: true,
+        chainId: 14997,
+    });
+
+    let { data: depositHash, isPending, writeContract } = useWriteContract() 
     async function submitDeposit(e) { 
         e.preventDefault() 
         const formData = new FormData(e.target) 
         const value = formData.get('value')
+
+        const allowanceInWei = parseInt(allowance) * (10 ** 6);
+        console.log(`allowance:${allowance} value:${value*(10**6)}`)
+        if (value * (10 ** 6) > allowanceInWei) {
+            console.error(`Insufficient allowance: allowance:${allowance} value:${value*(10**6)}`);
+            return;
+        }
+
         writeContract({ 
             address: testnetREPOContractConfig.address, 
             abi: testnetREPOContractConfig.abi, 
             functionName: 'deposit', 
-            args: [value*10**6, address]
-          }) 
-        // setDepositTxHash(hash)
-        // setShowTransactionHash(true)
-        
+            args: [value*(10**6), address]
+        })
     }
-
+    
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
     useWaitForTransactionReceipt({ 
-      hash, 
+        depositHash
     })
 
     {isPending && 'pending...'} 
@@ -34,10 +47,10 @@ const DepositRLP = ({address, setDepositTxHash, setShowTransactionHash}) => {
 
     return(
         <form onSubmit={submitDeposit}> 
-            <input name="value" placeholder='0' required />
-            <button type="submit" disabled={isPending} >Buy $RLP</button>
+            <input name="value" placeholder={0} required />
+            <button type="submit">Buy $RLP</button>
             <div className="transaction-details">
-                {hash && <div>Transaction Hash: {hash}</div>}
+                {depositHash && <div>Transaction Hash: {depositHash}</div>}
                 {isConfirming && <div>Waiting for confirmation...</div>} 
                 {isConfirmed && <div>Transaction confirmed.</div>} 
             </div>

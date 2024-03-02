@@ -9,6 +9,8 @@ import { testnet } from "../customChain";
 // import { jsonRpcProvider } from "ethers";
 import {createConfig} from 'wagmi'
 
+import MasterBlockChainDetails from './masterBlockchainDetails'
+
 const queryClient = new QueryClient()
 
 // 1. Get projectId at https://cloud.walletconnect.com
@@ -16,14 +18,14 @@ const projectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID
 
 
 const repoTestnet = {
-  chainId: 14997,
-  name: 'Network name: BuildBear Persistent Siryn',
-  currency: 'Token',
-  explorerUrl: 'https://explorer.buildbear.io/persistent-siryn-0132e20a',
-  rpcUrl: 'https://rpc.buildbear.io/persistent-siryn-0132e20a',
+  chainId: MasterBlockChainDetails.chainId,
+  name: MasterBlockChainDetails.name,
+  currency: MasterBlockChainDetails.tokenName,
+  explorerUrl: MasterBlockChainDetails.explorerUrl,
+  rpcUrl: MasterBlockChainDetails.rpc,
   rpcUrls: {
     default: {
-      http: ['https://rpc.buildbear.io/persistent-siryn-0132e20a'],
+      http: [MasterBlockChainDetails.rpc],
     },
   },
 }
@@ -44,7 +46,7 @@ export const config = createConfig({
 })
 
 createWeb3Modal({
-  ethersConfig: defaultConfig({ metadata, rpcUrl: "https://rpc.buildbear.io/persistent-siryn-0132e20a" }),
+  ethersConfig: defaultConfig({ metadata, rpcUrl: MasterBlockChainDetails.rpc }),
   wagmiConfig: config,
   chains: [repoTestnet],
   defaultChain: testnet,

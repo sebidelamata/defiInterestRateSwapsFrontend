@@ -7,8 +7,6 @@ const Earn = () => {
     return(
         <div className="earn-page">
             <Navbar></Navbar>
-            <EarnGovTokenModal/>
-            <TotalRewards/>
             <EarnLPTokenModal/>
         </div>
     )

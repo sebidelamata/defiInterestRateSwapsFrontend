@@ -1,20 +1,21 @@
 import { Chain } from "viem"
+import MasterBlockChainDetails from './src/masterBlockchainDetails'
  
 export const testnet = {
-  id: 14997,
-  name: 'BuildBear Persistent Siryn',
+  id: MasterBlockChainDetails.chainId,
+  name: MasterBlockChainDetails.name,
   nativeCurrency: {
-    decimals: 18,
-    name: 'Token',
-    symbol: 'Token',
+    decimals: MasterBlockChainDetails.decimals,
+    name: MasterBlockChainDetails.name,
+    symbol: MasterBlockChainDetails.name,
   },
   rpcUrls: {
     default: {
-      http: ['https://rpc.buildbear.io/persistent-siryn-0132e20a'],
+      http: [MasterBlockChainDetails.rpc],
     },
   },
   blockExplorers: {
-    default: { name: 'Explorer', url: 'https://explorer.buildbear.io/persistent-siryn-0132e20a' },
+    default: { name: 'Explorer', url: MasterBlockChainDetails.explorerUrl },
   },
   testnet: true,
 } as const satisfies Chain

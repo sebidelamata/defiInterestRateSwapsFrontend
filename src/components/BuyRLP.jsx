@@ -11,8 +11,6 @@ import DepositRLP from "./DepositRLP"
 const BuyRLP = () => {
     let { address, isConnecting, isDisconnected } = useAccount(config)
     let [approved, setApproved] = useState(null)
-    let [depositTxHash, setDepositTxHash] = useState(null)
-    let [showTransactionHash, setShowTransactionHash] = useState(false)
 
     const allowanceData = useReadContract({
         address: testnetREPOContractConfig.address,
@@ -31,11 +29,7 @@ const BuyRLP = () => {
             }
             {
             approved !== null &&
-                <DepositRLP  address={address} setDepositTxHash={setDepositTxHash} setShowTransactionHash={setShowTransactionHash}/>
-            }
-            {
-                showTransactionHash === true &&
-                <div className="transaction-hash"> Transaction Hash: {depositTxHash}</div>
+                <DepositRLP  address={address}/>
             }
         </div>
     )
