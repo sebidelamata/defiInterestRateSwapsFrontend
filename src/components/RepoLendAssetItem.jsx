@@ -45,6 +45,14 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
                 args: [address],
                 watch: true,
                 chainId:14997,
+            },
+            {
+                abi: testnetREPOContractConfig.abi,
+                address: testnetREPOContractConfig.address,
+                functionName: 'loans',
+                args: [address],
+                watch: true,
+                chainId:14997,
             }
         ]
     });
@@ -58,7 +66,8 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
                 parseInt(fetchResults.data[0].result), 
                 parseInt(fetchResults.data[1].result),
                 parseInt(fetchResults.data[2].result),
-                parseInt(fetchResults.data[3].result)
+                parseInt(fetchResults.data[3].result),
+                parseInt(fetchResults.data[4].result)
             ]);
         }
     }, [fetchResults.error, fetchResults.data])
@@ -76,7 +85,7 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
                     </div>
                     <button onClick={() => setValue(userBalanceAndDecimals[0] / 10**userBalanceAndDecimals[1] || 0)}>Max</button>
                     <div className="lend-balance">
-                        {`Posted: ${userBalanceAndDecimals[2] / 10*userBalanceAndDecimals[1] || 0} ${assetString}`}
+                        {`Posted: ${userBalanceAndDecimals[2] / 10**userBalanceAndDecimals[1] || 0} ${assetString}`}
                     </div>
                 </div>
                 <div className="repo-lend-asset-deposit-bottom-right">
@@ -92,7 +101,7 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
                         type === 'lend' &&
                         // change this back when network is up
                         // approved !== null &&
-                        <RepoLendAssetLend assetString={assetString} config={config} value={value}/>
+                        <RepoLendAssetLend assetString={assetString} config={config} value={value} address={address} decimals={userBalanceAndDecimals[1]}/>
                     }
                     {
                         type === 'lend' &&
@@ -107,13 +116,13 @@ const RepoLendAssetItem = ({address, config, assetString, type}) => {
                         type === 'borrow' &&
                         // change this back when network is up
                         // approved !== null &&
-                        <RepoLendAssetBorrow assetString={assetString} config={config} value={value} usdcBalance={userBalanceAndDecimals[3]}/>
+                        <RepoLendAssetBorrow assetString={assetString} config={config} value={value} usdcBalance={userBalanceAndDecimals[3]} address={address}/>
                     }
                     {
                         type === 'borrow' &&
                         // change this back when network is up
                         // approved !== null &&
-                        <RepoLendAssetRepay assetString={assetString} config={config} value={value}/>
+                        <RepoLendAssetRepay assetString={assetString} config={config} value={value} address={address}/>
                     }
                 </div>
             </div>

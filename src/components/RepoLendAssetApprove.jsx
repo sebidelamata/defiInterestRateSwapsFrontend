@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
+import { testnetFixedYieldCollateralVaultConfig } from "../../abis"
 
 const RepoLendAssetApprove = ({config, approved, setApproved, value, decimals}) => {
         
@@ -11,7 +12,7 @@ const RepoLendAssetApprove = ({config, approved, setApproved, value, decimals}) 
             address: config.address, 
             abi: config.abi, 
             functionName: 'approve', 
-            args: [config.address, value * 10**decimals], 
+            args: [testnetFixedYieldCollateralVaultConfig.address, value * 10**decimals], 
         })
     }
         

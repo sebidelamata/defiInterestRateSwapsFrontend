@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react"
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
-import { testnetFixedYieldCollateralVaultConfig } from "../../abis"
+import { testnetFixedYieldCollateralVaultConfig, testnetREPOContractConfig } from "../../abis"
 
-const RepoLendAssetRepay = ({assetString, config, value}) => {
+const RepoLendAssetRepay = ({assetString, config, value, address}) => {
     let { data: hash, isPending, writeContract } = useWriteContract() 
     console.log(testnetFixedYieldCollateralVaultConfig)
     async function submitApproval(e) { 
         e.preventDefault() 
         writeContract({ 
-            address: testnetFixedYieldCollateralVaultConfig.address, 
-            abi: testnetFixedYieldCollateralVaultConfig.abi, 
-            functionName: 'withdraw', 
-            args: [config.address, value * 10**6], 
+            address: testnetREPOContractConfig.address, 
+            abi: testnetREPOContractConfig.abi, 
+            functionName: 'repurchase', 
+            args: [address, 'index'], 
         })
     }
         
