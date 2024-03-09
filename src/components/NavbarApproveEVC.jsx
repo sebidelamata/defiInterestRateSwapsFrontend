@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react"
 import { testnetEthereumVaultConnectorConfig, testnetRepoPlatformOperatorConfig } from "../../abis"
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
-import { BrowserProvider, Contract, formatUnits } from 'ethers'
 import { ethers } from "ethers"
+import { useEVC, useProvider } from "../../EthersContextProvider"
 
 
-const NavbarApproveEVC = ({address, setAccountApproveState, isConnected}) => {
+const NavbarApproveEVC = ({ setAccountApproveState }) => {
     
     const [approve, setApprove] = useState(null)
+
+    const { address, chainId, isConnected } = useWeb3ModalAccount()
     const { walletProvider } = useWeb3ModalProvider()
-    const ethersProvider = new BrowserProvider(walletProvider)
-    console.log(ethersProvider)
 
-    console.log(isConnected)
-
-    if (isConnected) {
-                const abi = testnetEthereumVaultConnectorConfig.abi
-                const contractAddress = testnetEthereumVaultConnectorConfig.address
-                setApprove(new ethers.Contract(contractAddress, abi, isConnected.getSigner()))
-            }
+    const EVC = useEVC()
+    const provider = useProvider()
 
     // useEffect(() => {
     //     if (isConnected) {
@@ -30,11 +25,18 @@ const NavbarApproveEVC = ({address, setAccountApproveState, isConnected}) => {
 
     const submitApprove = async (e) => {
         e.preventDefault() 
-        await setApprove.setAccountOperator(
-            testnetRepoPlatformOperatorConfig.address,
+        
+        const signer = await provider.getSigner()
+        console.log('start')
+        // Inspector updates status
+        const transaction = await EVC.connect(signer).setAccountOperator(
+            address, 
+            testnetRepoPlatformOperatorConfig.address, 
             true
         )
-        alert('Your transaction has been submitted')
+        await transaction.wait()
+        console.log('done')
+
     }
     // useEffect(() => {
     //     if(isConfirmed === true){

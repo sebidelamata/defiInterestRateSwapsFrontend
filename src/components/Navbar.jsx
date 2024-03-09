@@ -49,14 +49,14 @@ const Navbar = () => {
                     {
                         accountApproveState === null && (
                             <li>
-                                {/* <NavbarApproveEVC address={address} setAccountApproveState={setAccountApproveState} isConnected={isConnected}/> */}
+                                <NavbarApproveEVC setAccountApproveState={setAccountApproveState}/>
                             </li>
                         )
                     }
                     {
                         accountApproveState === 'approved' && (
                             <li>
-                                <NavbarApproveRepOperator address={address} setAccountApproveState={setAccountApproveState}/>
+                                <NavbarApproveRepOperator setAccountApproveState={setAccountApproveState}/>
                             </li>
                         )
                     }
