@@ -5,9 +5,11 @@ import Earn from "./Earn";
 import Trade from "./Trade";
 import RepoLend from "./RepoLend";
 import Docs from "./Docs";
-
+import { EthersProvider } from "../EthersContextProvider";
 
 const Router = () => {
+
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -32,7 +34,11 @@ const Router = () => {
     }
   ]);
 
-  return <RouterProvider router={router} />;
+  return(
+    <EthersProvider>
+      <RouterProvider router={router} />
+    </EthersProvider>
+  )
 };
 
 export default Router;

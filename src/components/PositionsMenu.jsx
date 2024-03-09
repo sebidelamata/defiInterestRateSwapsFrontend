@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAccount, useReadContract, useReadContracts } from "wagmi"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
-import { config } from "../main"
 import IndividualPositionRow from "./IndividualPositionRow"
 
 const PositionsMenu = () => {

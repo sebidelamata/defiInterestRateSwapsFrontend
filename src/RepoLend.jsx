@@ -1,7 +1,6 @@
 import Navbar from "./components/Navbar"
 import { testnetREPOContractConfig, testnetPTTokenContractConfig, testnetUSDCContractConfig } from "../abis"
 import { useAccount, useReadContract } from "wagmi"
-import {config} from './main'
 import RepoLendAssetItem from "./components/RepoLendAssetItem"
 
 const RepoLend = () => {

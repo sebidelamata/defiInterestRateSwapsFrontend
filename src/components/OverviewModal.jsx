@@ -1,52 +1,50 @@
 import { useReadContract } from 'wagmi'
 import {testnetREPOContractConfig, testnetUSDCContractConfig} from '../../abis'
-import { useAccount } from 'wagmi'
-import { config } from '../main'
 
 const OverviewModal = () => {
 
-    let { address, isConnecting, isDisconnected } = useAccount(config)
+    // let { address, isConnecting, isDisconnected } = useAccount(config)
 
-    let userBalanceUSDCFetch = useReadContract({
-        abi: testnetUSDCContractConfig.abi,
-        address: testnetUSDCContractConfig.address,
-        functionName: 'balanceOf',
-        args: [address],
-        watch: true,
-        chainId:14997,
-      })
-    // remove usdc decimals
-    userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
+    // let userBalanceUSDCFetch = useReadContract({
+    //     abi: testnetUSDCContractConfig.abi,
+    //     address: testnetUSDCContractConfig.address,
+    //     functionName: 'balanceOf',
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    //   })
+    // // remove usdc decimals
+    // userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
 
-    let poolBalanceUSDCFetch = useReadContract({
-        abi: testnetREPOContractConfig.abi,
-        address: testnetREPOContractConfig.address,
-        functionName: 'balanceOf',
-        args: [address],
-        watch: true,
-        chainId:14997,
-      })
-    // remove usdc decimals
-    poolBalanceUSDCFetch = (parseInt(poolBalanceUSDCFetch.data) * 10**-6).toFixed(2)
+    // let poolBalanceUSDCFetch = useReadContract({
+    //     abi: testnetREPOContractConfig.abi,
+    //     address: testnetREPOContractConfig.address,
+    //     functionName: 'balanceOf',
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    //   })
+    // // remove usdc decimals
+    // poolBalanceUSDCFetch = (parseInt(poolBalanceUSDCFetch.data) * 10**-6).toFixed(2)
 
-    let userBalanceRLPFetch = useReadContract({
-        abi: testnetREPOContractConfig.abi,
-        address: testnetREPOContractConfig.address,
-        functionName: 'balanceOf',
-        args: [address],
-        watch: true,
-        chainId:14997,
-      })
-    // remove usdc decimals
-    //userBalanceRLPFetch = (parseInt(userBalanceRLPFetch.data) * 10**-6).toFixed(2)
-    let oracleFetch = useReadContract({
-        abi: testnetREPOContractConfig.abi,
-        address: testnetREPOContractConfig.address,
-        functionName: "oracle",
-        args: [],
-        watch: true,
-        chainId:14997,
-      })
+    // let userBalanceRLPFetch = useReadContract({
+    //     abi: testnetREPOContractConfig.abi,
+    //     address: testnetREPOContractConfig.address,
+    //     functionName: 'balanceOf',
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    //   })
+    // // remove usdc decimals
+    // //userBalanceRLPFetch = (parseInt(userBalanceRLPFetch.data) * 10**-6).toFixed(2)
+    // let oracleFetch = useReadContract({
+    //     abi: testnetREPOContractConfig.abi,
+    //     address: testnetREPOContractConfig.address,
+    //     functionName: "oracle",
+    //     args: [],
+    //     watch: true,
+    //     chainId:14997,
+    //   })
 
     return(
         <div className="overview-modal">
@@ -55,7 +53,7 @@ const OverviewModal = () => {
                 <li className="overview-stats-item">
                     <div className="overview-stats-item-title">$RLP Pool</div>
                     <div className="overview-stats-item-stat">
-                    <div>{`${poolBalanceUSDCFetch}`}</div>
+                    <div>{`poolBalanceUSDCFetch`}</div>
                         <div className="total-stats-modal-item-stat-unit">USDC</div>
                     </div>
                 </li>

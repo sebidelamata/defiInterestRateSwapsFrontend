@@ -3,7 +3,6 @@ import ReedemRLP from "./ReedeemRLP"
 import EarnLPStaked from "./EarnLPStaked"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
 import { useWriteContract, useReadContract, useAccount } from "wagmi"
-import { config } from "../main"
 import { useEffect, useState } from "react"
 
 const EarnLPTokenModal = () => {

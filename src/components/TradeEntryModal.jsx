@@ -3,7 +3,6 @@ import ReactSlider from 'react-slider'
 import { useAccount, useReadContract } from 'wagmi'
 import {testnetUSDCContractConfig, testnetREPOContractConfig, testnetPTTokenContractConfig} from '../../abis'
 import { getAccount } from '@wagmi/core'
-import { config } from '../main'
 import ExecuteTradeButton from "./ExecuteTradeButton"
 
 const TradeEntryModal = () => {

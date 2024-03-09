@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAccount, useReadContract } from 'wagmi'
 import {testnetUSDCContractConfig, testnetREPOContractConfig} from '../../abis'
-import { config } from '../main'
 import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi' 
 
 const DepositRLP = ({address}) => {

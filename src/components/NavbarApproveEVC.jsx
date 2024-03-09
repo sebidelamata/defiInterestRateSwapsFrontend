@@ -1,37 +1,53 @@
-import { useEffect } from "react"
-import { useWriteContract, useWaitForTransactionReceipt } from "wagmi"
+import { useEffect, useState } from "react"
 import { testnetEthereumVaultConnectorConfig, testnetRepoPlatformOperatorConfig } from "../../abis"
+import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
+import { BrowserProvider, Contract, formatUnits } from 'ethers'
+import { ethers } from "ethers"
 
-const NavbarApproveEVC = ({address, setAccountApproveState}) => {
+
+const NavbarApproveEVC = ({address, setAccountApproveState, isConnected}) => {
     
-    let { data: hash, isPending, writeContract } = useWriteContract() 
+    const [approve, setApprove] = useState(null)
+    const { walletProvider } = useWeb3ModalProvider()
+    const ethersProvider = new BrowserProvider(walletProvider)
+    console.log(ethersProvider)
 
-    async function submitApprove(e) { 
+    console.log(isConnected)
+
+    if (isConnected) {
+                const abi = testnetEthereumVaultConnectorConfig.abi
+                const contractAddress = testnetEthereumVaultConnectorConfig.address
+                setApprove(new ethers.Contract(contractAddress, abi, isConnected.getSigner()))
+            }
+
+    // useEffect(() => {
+    //     if (isConnected) {
+    //         const abi = testnetEthereumVaultConnectorConfig.abi
+    //         const contractAddress = testnetEthereumVaultConnectorConfig.address
+    //         setApprove(new ethers.Contract(contractAddress, abi, isConnected.getSigner()))
+    //     }
+    // }, [walletProvider])
+
+    const submitApprove = async (e) => {
         e.preventDefault() 
-        writeContract({ 
-            address: testnetEthereumVaultConnectorConfig.address, 
-            abi: testnetEthereumVaultConnectorConfig.abi, 
-            functionName: 'setAccountOperator', 
-            args: [address, testnetRepoPlatformOperatorConfig.address, true], 
-        })
+        await setApprove.setAccountOperator(
+            testnetRepoPlatformOperatorConfig.address,
+            true
+        )
+        alert('Your transaction has been submitted')
     }
-        
-    const { isLoading: isConfirming, isSuccess: isConfirmed } = 
-        useWaitForTransactionReceipt({ 
-          hash, 
-        }) 
-        
-    useEffect(() => {
-        if(isConfirmed === true){
-            setAccountApproveState('approved')
-        }
-    }, [isConfirmed])
+    // useEffect(() => {
+    //     if(isConfirmed === true){
+    //         setAccountApproveState('approved')
+    //     }
+    // }, [isConfirmed])
+
     return(
         <form onSubmit={submitApprove}> 
             <button type="submit">Approve Account</button>
-            {hash && <div className="transaction-hash">Transaction Hash: {hash}</div>}
+            {/* {hash && <div className="transaction-hash">Transaction Hash: {hash}</div>}
             {isConfirming && <div className="transaction-hash">Waiting for confirmation...</div>} 
-            {isConfirmed &&  hash && <div className="transaction-hash">Transaction confirmed.</div>} 
+            {isConfirmed &&  hash && <div className="transaction-hash">Transaction confirmed.</div>}  */}
         </form>
     )
 }

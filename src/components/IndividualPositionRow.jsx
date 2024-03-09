@@ -1,6 +1,5 @@
 import { useAccount, useReadContract } from "wagmi"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
-import { config } from "../main"
 import { useState, useEffect } from "react"
 import { DateTime } from "luxon";
 import PositionCurrentValue from "./PositionCurrentValue";
