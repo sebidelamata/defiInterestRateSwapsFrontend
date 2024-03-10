@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { testnetEthereumVaultConnectorConfig, testnetRepoPlatformOperatorConfig } from "../../abis"
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
 import { ethers } from "ethers"
-import { useEVC, useProvider } from "../../EthersContextProvider"
+import { useEVC, useProvider, useRepoPlatformOperator, useUSDC } from "../../EthersContextProvider"
 
 
 const NavbarApproveEVC = ({ setAccountApproveState }) => {
@@ -12,8 +12,9 @@ const NavbarApproveEVC = ({ setAccountApproveState }) => {
     const { address, chainId, isConnected } = useWeb3ModalAccount()
     const { walletProvider } = useWeb3ModalProvider()
 
-    const EVC = useEVC()
     const provider = useProvider()
+    const EVC = useEVC()
+    const RepoPlatformOperator = useRepoPlatformOperator()
 
     // useEffect(() => {
     //     if (isConnected) {
@@ -27,15 +28,23 @@ const NavbarApproveEVC = ({ setAccountApproveState }) => {
         e.preventDefault() 
         
         const signer = await provider.getSigner()
-        console.log('start')
+        console.log(signer)
+        console.log(address)
         // Inspector updates status
-        const transaction = await EVC.connect(signer).setAccountOperator(
-            address, 
+        
+        let transaction = await EVC.connect(signer).setAccountOperator(
+            signer.address, 
             testnetRepoPlatformOperatorConfig.address, 
             true
         )
         await transaction.wait()
-        console.log('done')
+        console.log(transaction)
+
+        // transaction = await RepoPlatformOperator.connect(signer).approveAllVaultsOnBehalfOf(
+        //     address
+        // )
+        // await transaction.wait()
+        
 
     }
     // useEffect(() => {

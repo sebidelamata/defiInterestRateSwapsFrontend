@@ -1,35 +1,54 @@
 import { useEffect, useState } from "react"
 import ReactSlider from 'react-slider'
-import { useAccount, useReadContract } from 'wagmi'
 import {testnetUSDCContractConfig, testnetREPOContractConfig, testnetPTTokenContractConfig} from '../../abis'
-import { getAccount } from '@wagmi/core'
 import ExecuteTradeButton from "./ExecuteTradeButton"
+import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
+import { ethers } from "ethers"
+import { useProvider, useUSDC } from "../../EthersContextProvider"
 
 const TradeEntryModal = () => {
+
+    const { address, chainId, isConnected } = useWeb3ModalAccount()
+    const { walletProvider } = useWeb3ModalProvider()
+
+    const provider = useProvider()
+    const USDC = useUSDC()
+
 
     //const [tradeDirection, setTradeDirection] = useState('Long')
     const [leverage, setLeverage] = useState(1.00);
     const [payValue, setPayValue] = useState(1.00)
     const [PTTokenExpiry, setPTTokenExpiry] = useState(null)
+    const [usdcBalance, setUsdcBalance] = useState(null)
     // min value one day
     const [positionTerm, setPositionTerm] = useState(1440 * 60)
 
-    let { address, isConnecting, isDisconnected } = useAccount(config)
+    // let { address, isConnecting, isDisconnected } = useAccount(config)
 
     const handlePayValueChange = (e) => {
         setPayValue(e.target.value);
     };
 
-    let userBalanceUSDCFetch = useReadContract({
-        abi: testnetUSDCContractConfig.abi,
-        address: testnetUSDCContractConfig.address,
-        functionName: 'balanceOf',
-        args: [address],
-        watch: true,
-        chainId:14997,
-      })
-    // remove usdc decimals
-    userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
+    const fethcUsdcBalance = async () => {
+        const usdcBalance = await USDC.balanceOf(address)
+        setUsdcBalance(parseInt(usdcBalance)*10**-6)
+        console.log(usdcBalance)
+    }
+
+    useEffect(() => {
+        fethcUsdcBalance()
+    }, [])
+
+    // let userBalanceUSDCFetch = useReadContract({
+    //     abi: testnetUSDCContractConfig.abi,
+    //     address: testnetUSDCContractConfig.address,
+    //     functionName: 'balanceOf',
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    //   })
+    // // remove usdc decimals
+    // userBalanceUSDCFetch = (parseInt(userBalanceUSDCFetch.data) * 10**-6).toFixed(2)
 
     // let userBalanceRepoFetch = useReadContract({
     //     abi: testnetREPOContractConfig.abi,
@@ -42,27 +61,27 @@ const TradeEntryModal = () => {
     
     const handleMaxButtonClick = (e) => {
         e.preventDefault()
-        setPayValue(userBalanceUSDCFetch)
+        setPayValue(usdcBalance)
     }
     
-    let PTTokenExpiryFetch = useReadContract({
-        abi: testnetPTTokenContractConfig.abi,
-        address: testnetPTTokenContractConfig.address,
-        functionName: "expiry",
-        args: [],
-        watch: true,
-        chainId:14997,
-    })
+    // let PTTokenExpiryFetch = useReadContract({
+    //     abi: testnetPTTokenContractConfig.abi,
+    //     address: testnetPTTokenContractConfig.address,
+    //     functionName: "expiry",
+    //     args: [],
+    //     watch: true,
+    //     chainId:14997,
+    // })
 
-    useEffect(() => {
-        if(PTTokenExpiryFetch.data !== null && PTTokenExpiryFetch.data !== undefined){
-            let expiry = parseInt(PTTokenExpiryFetch.data)
-            expiry = new Date(expiry*1000)
-            let today = new Date()
-            expiry = expiry - today
-            setPTTokenExpiry(expiry)
-        }
-    },[PTTokenExpiryFetch.data])
+    // useEffect(() => {
+    //     if(PTTokenExpiryFetch.data !== null && PTTokenExpiryFetch.data !== undefined){
+    //         let expiry = parseInt(PTTokenExpiryFetch.data)
+    //         expiry = new Date(expiry*1000)
+    //         let today = new Date()
+    //         expiry = expiry - today
+    //         setPTTokenExpiry(expiry)
+    //     }
+    // },[PTTokenExpiryFetch.data])
     
     const days = Math.floor(positionTerm / (60 * 60 * 24 * 1000));
 
@@ -75,7 +94,7 @@ const TradeEntryModal = () => {
                 </ul> */}
                 <div className="trade-entry-payment-entry">
                     <div className="trade-entry-payment-entry-top-row">
-                        <div className="trade-entry-payment-entry-balance">{`Wallet: ${userBalanceUSDCFetch} USDC`}</div>
+                        <div className="trade-entry-payment-entry-balance">{`Wallet: ${usdcBalance.toFixed(4)} USDC`}</div>
                     </div>
                     <div className="trade-entry-payment-entry-bottom-row">
                         <input className="trade-entry-payment-entry-bottom-row-left" type="number" value={payValue} onChange={handlePayValueChange}></input>
@@ -151,7 +170,7 @@ const TradeEntryModal = () => {
                     </div>
                 </div>
             </form>
-            <ExecuteTradeButton leverage={leverage} payValue={payValue} positionTerm={positionTerm}/>
+            {/* <ExecuteTradeButton leverage={leverage} payValue={payValue} positionTerm={positionTerm}/> */}
         </div>
     )
 }

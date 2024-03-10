@@ -53,7 +53,7 @@ export const usePTToken = () => {
 export const useEVC = () => {
     return useContext(EVCContext)
 }
-export const useRepoPlatformOperatorContext = () => {
+export const useRepoPlatformOperator = () => {
     return useContext(repoPlatformOperatorContext)
 }
 export const useFixedYieldCollateralVault = () => {
@@ -131,7 +131,7 @@ export const EthersProvider = ({children}) => {
             testnetFixedYieldCollateralVaultConfig.abi, 
             provider
         )
-        setRepoPlatformOperator(testnetFixedYieldCollateralVault)
+        setFixedYieldCollateralVault(testnetFixedYieldCollateralVault)
     
         window.ethereum.on('accountsChanged', async () => {
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })

@@ -2,16 +2,22 @@ import BuyRLP from "./BuyRLP"
 import ReedemRLP from "./ReedeemRLP"
 import EarnLPStaked from "./EarnLPStaked"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
-import { useWriteContract, useReadContract, useAccount } from "wagmi"
 import { useEffect, useState } from "react"
+import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
+import { ethers } from "ethers"
+import { useProvider, useUSDC } from "../../EthersContextProvider"
 
 const EarnLPTokenModal = () => {
 
-    let { address, isConnecting, isDisconnected } = useAccount(config)
+    const { address, chainId, isConnected } = useWeb3ModalAccount()
+    const { walletProvider } = useWeb3ModalProvider()
+
+    const provider = useProvider()
+    const USDC = useUSDC()
+
     const [previewRedeem, setPreviewRedeem] = useState(null)
     const [numUserRLPShares, setNumUserRLPShares] = useState(null)
 
-    let { data: hash, error, isPending, writeContract } = useWriteContract() 
     //
     console.log(testnetREPOContractConfig.address)
     const numUserRLPSharesFetch = useReadContract({

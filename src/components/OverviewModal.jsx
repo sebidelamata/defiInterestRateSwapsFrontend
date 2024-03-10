@@ -1,7 +1,31 @@
 import { useReadContract } from 'wagmi'
 import {testnetREPOContractConfig, testnetUSDCContractConfig} from '../../abis'
+import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
+import { ethers } from "ethers"
+import { useProvider, useUSDC } from "../../EthersContextProvider"
+import { useEffect, useState } from 'react'
 
 const OverviewModal = () => {
+
+    const { address, chainId, isConnected } = useWeb3ModalAccount()
+    const { walletProvider } = useWeb3ModalProvider()
+
+    const provider = useProvider()
+    const USDC = useUSDC()
+
+    // overview stat states
+    const [usdcBalance, setUsdcBalance] = useState(null)
+
+    const fethcUsdcBalance = async () => {
+        console.log(USDC)
+        const usdcBalance = await USDC.balanceOf(address)
+        setUsdcBalance(usdcBalance)
+        console.log(usdcBalance)
+    }
+
+    useEffect(() => {
+        fethcUsdcBalance()
+    }, [])
 
     // let { address, isConnecting, isDisconnected } = useAccount(config)
 

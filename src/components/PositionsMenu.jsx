@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react"
-import { useAccount, useReadContract, useReadContracts } from "wagmi"
 import { testnetREPOContractConfig, testnetUSDCContractConfig } from "../../abis"
 import IndividualPositionRow from "./IndividualPositionRow"
 
 const PositionsMenu = () => {
     const [selectedPostion, setSelectedPosition] = useState('Positions')
-    let { address, isConnecting, isDisconnected } = useAccount(config)
+    // let { address, isConnecting, isDisconnected } = useAccount(config)
 
-    let userPositionsLengthFetch = useReadContract({
-        abi: testnetREPOContractConfig.abi,
-        address: testnetREPOContractConfig.address,
-        functionName: 'loans',
-        args: [address],
-        watch: true,
-        chainId:14997,
-    })
-    userPositionsLengthFetch = parseInt(userPositionsLengthFetch.data)
+    // let userPositionsLengthFetch = useReadContract({
+    //     abi: testnetREPOContractConfig.abi,
+    //     address: testnetREPOContractConfig.address,
+    //     functionName: 'loans',
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    // })
+    // userPositionsLengthFetch = parseInt(userPositionsLengthFetch.data)
+    // this below is a placeholder
+    let userPositionsLengthFetch = 0
 
     return(
         <div className="positions-menu">
