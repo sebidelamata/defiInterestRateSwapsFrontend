@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { testnetEthereumVaultConnectorConfig, testnetRepoPlatformOperatorConfig } from "../../abis"
+import { testnetEthereumVaultConnectorConfig, testnetRepoPlatformOperatorConfig, testnetREPOContractConfig } from "../../abis"
 import { useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
 import { ethers } from "ethers"
-import { useEVC, useProvider, useRepoPlatformOperator, useUSDC } from "../../EthersContextProvider"
+import { useEVC, useProvider, useRepoPlatformOperator, useUSDC, useRepoVaultBorrowable } from "../../EthersContextProvider"
 
 
 const NavbarApproveEVC = ({ setAccountApproveState }) => {
@@ -14,7 +14,8 @@ const NavbarApproveEVC = ({ setAccountApproveState }) => {
 
     const provider = useProvider()
     const EVC = useEVC()
-    const RepoPlatformOperator = useRepoPlatformOperator()
+    const repoPlatformOperator = useRepoPlatformOperator()
+    const repoVaultBorrowable = useRepoVaultBorrowable()
 
     // useEffect(() => {
     //     if (isConnected) {
@@ -32,10 +33,9 @@ const NavbarApproveEVC = ({ setAccountApproveState }) => {
         console.log(address)
         // Inspector updates status
         
-        let transaction = await EVC.connect(signer).setAccountOperator(
+        let transaction = await EVC.connect(signer).enableController(
             signer.address, 
-            testnetRepoPlatformOperatorConfig.address, 
-            true
+            testnetREPOContractConfig.address
         )
         await transaction.wait()
         console.log(transaction)

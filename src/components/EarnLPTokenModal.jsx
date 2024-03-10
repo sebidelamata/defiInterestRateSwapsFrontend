@@ -20,19 +20,19 @@ const EarnLPTokenModal = () => {
 
     //
     console.log(testnetREPOContractConfig.address)
-    const numUserRLPSharesFetch = useReadContract({
-        address: testnetREPOContractConfig.address,
-        abi: testnetREPOContractConfig.abi,
-        functionName: "balanceOf",
-        args: [address],
-        watch: true,
-        chainId:14997,
-      });
-      console.log(numUserRLPSharesFetch)
+    // const numUserRLPSharesFetch = useReadContract({
+    //     address: testnetREPOContractConfig.address,
+    //     abi: testnetREPOContractConfig.abi,
+    //     functionName: "balanceOf",
+    //     args: [address],
+    //     watch: true,
+    //     chainId:14997,
+    //   });
+    //   console.log(numUserRLPSharesFetch)
     
       useEffect(() => {
-        setNumUserRLPShares(numUserRLPSharesFetch.data)
-      },[numUserRLPSharesFetch.data])
+        setNumUserRLPShares(999)
+      },[])
     console.log(numUserRLPShares + 'hi')
     
     return(
@@ -50,7 +50,7 @@ const EarnLPTokenModal = () => {
                         <div className="earn-lp-wallet-title">Wallet:</div>
                         <div className="earn-lp-wallet-amount">{`${parseInt(numUserRLPShares) * 10**-6} $RLP`}</div>
                     </div>
-                    <EarnLPStaked numUserRLPShares={numUserRLPShares} previewRedeem={previewRedeem} setPreviewRedeem={setPreviewRedeem}/>
+                    {/* <EarnLPStaked numUserRLPShares={numUserRLPShares} previewRedeem={previewRedeem} setPreviewRedeem={setPreviewRedeem}/> */}
                 </li>
                 <li className="earn-lp-apr-rewards">
                     <div className="earn-lp-apr">
@@ -74,7 +74,7 @@ const EarnLPTokenModal = () => {
                 </li>
                 <li className="earn-lp-modal-buttons">
                     <BuyRLP/>
-                    <ReedemRLP address={address}/>
+                    {/* <ReedemRLP address={address}/> */}
                 </li>
             </ul>
         </div>
